@@ -11,23 +11,25 @@ Plug 'vim-airline/vim-airline-themes' "Fancy Status Line
 " utilities
 Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim'
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
+Plug 'neomake/neomake'
 Plug 'mhinz/vim-signify'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-sleuth' " detect indent style (tabs vs. spaces)
-Plug 'Raimondi/delimitMate' "Auto-closing of parenthesis and stuff
+"Plug 'tpope/vim-vinegar'
+"Plug 'tpope/vim-surround'
+"Plug 'tpope/vim-repeat'
+"Plug 'tpope/vim-sleuth' " detect indent style (tabs vs. spaces)
+"Plug 'Raimondi/delimitMate' "Auto-closing of parenthesis and stuff
 Plug 'Valloric/YouCompleteMe' "Code completion
 
 " javascript
-Plug 'mxw/vim-jsx'
-Plug 'pangloss/vim-javascript'
-Plug 'moll/vim-node', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'mtscout6/syntastic-local-eslint.vim', { 'for': 'javascript' }
+"Plug 'moll/vim-node', { 'for': 'javascript' }
 "Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 Plug 'ternjs/tern_for_vim'
 "Plug 'elzr/vim-json', { 'for': 'json' }
-Plug 'kchmck/vim-coffee-script'
+"Plug 'kchmck/vim-coffee-script'
 
 " css and preprocessors
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
@@ -40,7 +42,7 @@ Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 "Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " On-demand loading
-Plug 'scrooloose/nerdtree', "{ 'on':  'NERDTreeToggle' }
+"Plug 'scrooloose/nerdtree', "{ 'on':  'NERDTreeToggle' }
 "Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 " Using git URL

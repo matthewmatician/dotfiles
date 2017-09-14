@@ -31,26 +31,26 @@ let g:solarized_termcolors=256
 set background=dark
 color solarized
 hi clear SignColumn
+hi SyntasticWarningSign ctermfg=214 guifg=#ffaf00 "Yellow warnings
 
 "Formatting
 set nowrap                      " wrap long lines
 set autoindent                  " indent at the same level of the previous line
-set shiftwidth=4                " use indents of 4 spaces
+set shiftwidth=2                " use indents of 2 spaces
 set expandtab                   " tabs are spaces, not tabs
-set tabstop=4                   " an indentation every four columns
-set softtabstop=4               " let backspace delete indent
+set tabstop=2                   " an indentation every four columns
+set softtabstop=2               " let backspace delete indent
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 set matchpairs+=<:>             " match, to be used with %
 set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
 set backspace=indent,eol,start
+set lazyredraw                  " redraw only when we need to
 
 " Remove trailing whitespaces and ^M chars
 autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 
 " Misc
 set laststatus=2
-set hlsearch                    " Hilight search results
-set showmatch                   " Show search results as I type
 set title                       " I don't really know that this is doing anything
 set whichwrap=b,s,h,l,<,>,[,]   " backspace and cursor keys wrap to
 
@@ -101,10 +101,18 @@ set wildmenu
 set wildmode=list:longest,full  " command <Tab> completion, list matches, then longest common part, then all.
 
 "Search
-set incsearch "Show search results as you type
+set incsearch                   " Show search results as you type
+set hlsearch                    " Hilight search results
+set showmatch                   " Show search results as I type
 set ignorecase
 set smartcase
 set wildignorecase
+
+"Cycling errors
+command! Lnext try | lnext | catch | lfirst | catch | endtry
+command! Lprev try | lprev | catch | llast | catch | endtry
+cabbrev ln Lnext
+cabbrev lp Lprev
 
 " ---------------------------------------------------------------------------------
 " #State
@@ -154,15 +162,22 @@ map <leader>k <C-W>k
 map <leader>l <C-W>l
 map <leader>h <C-W>h
 
-map <silent> <C-J> :res +3<cr>
+map <silent> <C-j> :res +3<cr>
 map <silent> <C-k> :res -3<cr>
 map <silent> <C-l> <C-W>8>
 map <silent> <C-h> <C-W>8<
 
 "Tab Navigation
-map <silent><leader>K :tabnext<cr>
-map <silent><leader>J :tabprevious<cr>
-map <silent><leader>T :tabnew<cr>
+"inoremap <C-m> <Esc>:tabnext<CR>
+"inoremap <C-n> <Esc>:tabprevious<CR>
+"inoremap <C-t> <Esc>:tabnew .<CR>
+
+nnoremap <C-m> :tabnext<CR>
+nnoremap <C-n> :tabprevious<CR>
+nnoremap <C-t> :tabnew .<CR>
+"map <silent><leader>K :tabnext<cr>
+"map <silent><leader>J :tabprevious<cr>
+"map <silent><leader>T :tabnew .<cr>
 "The following two lines conflict with moving to top and bottom of the screen
 "If you prefer that functionality, comment them out.
 map <S-H> gT
@@ -187,6 +202,9 @@ nmap <leader>/ :silent noh<CR>
 cmap cwd lcd %:p:h
 cmap cd. lcd %:p:h
 
+" Error navigation
+nmap <silent><leader>e :Lnext<cr>
+
 "//TODO Learn this to memory
 " Some helpers to edit mode
 " http://vimcasts.org/e/14
@@ -209,12 +227,27 @@ inoremap <silent> <Esc> <C-O>:stopinsert<CR>
 " #Syntax
 " ---------------------------------------------------------------------------------
 "Syntastic Options
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 2
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 let g:syntastic_javascript_checkers = ['eslint']
+"let g:syntastic_javascript_eslint_exe = 'npm run lint --'
+let g:syntastic_error_symbol = "\u2717"
+let g:syntastic_warning_symbol = "\u2717"
+
+"Neomake options
+autocmd! BufWritePost,BufEnter * Neomake
+let g:neomake_open_list = 0
+let g:neomake_warning_sign = {
+  \ 'text': '✗',
+  \ 'texthl': 'SyntasticWarningSign',
+  \ }
+let g:neomake_error_sign = {
+  \ 'text': '✗',
+  \ 'texthl': 'Error',
+  \ }
+let g:neomake_javascript_enabled_makers = ['eslint']
 
 "JSX Options
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
