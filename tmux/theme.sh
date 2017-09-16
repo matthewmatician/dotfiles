@@ -9,9 +9,9 @@ color_light=colour243
 color_white=colour255
 color_music=colour75
 
-tm_spotify="#[fg=$color_music]#(osascript ~/.dotfiles/applescripts/spotify.scpt)"
-tm_itunes="#[fg=$color_music]#(osascript ~/.dotfiles/applescripts/itunes.scpt)"
-tm_rdio="#[fg=$color_music]#(osascript ~/.dotfiles/applescripts/rdio.scpt)"
+tm_spotify="#[fg=$color_music]#(osascript ~/dotfiles/applescripts/spotify.scpt)"
+tm_itunes="#[fg=$color_music]#(osascript ~/dotfiles/applescripts/itunes.scpt)"
+tm_rdio="#[fg=$color_music]#(osascript ~/dotfiles/applescripts/rdio.scpt)"
 
 # Status update interval
 set -g status-interval 1

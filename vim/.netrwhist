@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
 let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/Users/matthew/.dotfiles/vim/plugged/syntastic-local-eslint.vim/ftplugin'
+let g:netrw_dirhist_1='/Users/matthew/dotfiles/vim/plugged/syntastic-local-eslint.vim/ftplugin'
 let g:netrw_dirhist_2='/Users/matthew/Documents/ldsChurch/Indexing Acceleration/tyndale/tyndale/assets/js/utils/dates'
-let g:netrw_dirhist_3='/Users/matthew/.dotfiles/install'
+let g:netrw_dirhist_3='/Users/matthew/dotfiles/install'

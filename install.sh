@@ -24,9 +24,9 @@ if [ "$(uname)" == "Darwin" ]; then
 fi
 
 echo "Installing Vim setup"
-ln -s ~/.dotfiles/vim ~/.vim
+ln -s ~/dotfiles/vim ~/.vim
 vim -S vim/plugins.vim +PlugInstall +qa
-ln -s ~/.dotfiles/.vimrc ~/.vimrc
+ln -s ~/dotfiles/.vimrc ~/.vimrc
 
 echo "Installing NPM modules"
 sudo npm install -g gulp
