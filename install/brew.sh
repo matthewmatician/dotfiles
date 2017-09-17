@@ -5,6 +5,9 @@ if test ! $(which brew); then
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+# accept xcode license agreement
+sudo xcodebuild -license accept
+
 echo "Installing homebrew packages..."
 
 # cli tools
@@ -15,11 +18,11 @@ brew install wget
 # development tools
 brew install git
 brew install hub
-brew install macvim --override-system-vim
+brew install git-flow
+brew install heroku
 brew install reattach-to-user-namespace
 brew install tmux
 brew install zsh
-brew install nvm
 
 #brew install highlight
 #brew install z
@@ -41,6 +44,7 @@ brew cask install\
   google-chrome\
   handbrake\
   iterm2\
+  java\
   kindle\
   microsoft-office\
   netbeans-java-se\
@@ -52,6 +56,17 @@ brew cask install\
   spotify\
   steam\
   visual-studio-code
+
+brew cask cleanup
+
+# Fonts
+brew tap caskroom/fonts
+brew cask install\
+  font-hack\
+  font-open-sans\
+  font-open-sans-condensed\
+  font-roboto\
+  font-roboto-condensed
 
 brew cask cleanup
 

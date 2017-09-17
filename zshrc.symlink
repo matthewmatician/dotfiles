@@ -100,7 +100,7 @@ alias .....="cd ../../../.."
 alias l="ls -lah ${colorflag}"
 alias l.="ls -dahl ${colorflag} .*"
 alias la="ls -AF ${colorflag}"
-alias ll="ls -lFh ${colorflag}"
+alias ll="ls -laFh ${colorflag}"
 alias lld="l -d */"
 alias rmf="rm -rf"
 
@@ -161,3 +161,7 @@ if [ -f ~/.profile.local ]; then
     source ~/.profile.local
 fi
 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

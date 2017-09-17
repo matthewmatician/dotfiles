@@ -36,5 +36,6 @@ sudo npm install -g eslint-plugin-react
 
 echo "Configuring zsh as default shell"
 chsh -s $(which zsh)
+sudo dscl ~ -create /Users/$USER UserShell /usr/local/bin/zsh
 
 echo "Done."

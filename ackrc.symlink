@@ -17,8 +17,8 @@
 # reset. The color alone sets the foreground color, and on_color sets the
 # background color.
 --color-filename=bold red
---color-match=bold green
---color-lineno=cyan
+--color-match=blue
+--color-lineno=bold green
 
 # Always color, even if piping to a another program
 --color
