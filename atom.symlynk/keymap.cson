@@ -1,0 +1,61 @@
+# Your keymap
+#
+# Atom keymaps work similarly to style sheets. Just as style sheets use
+# selectors to apply styles to elements, Atom keymaps use selectors to associate
+# keystrokes with events in specific contexts. Unlike style sheets however,
+# each selector can only be declared once.
+#
+# You can create a new keybinding in this file by typing "key" and then hitting
+# tab.
+#
+# Here's an example taken from Atom's built-in keymap:
+#
+# 'atom-text-editor':
+#   'enter': 'editor:newline'
+#
+# 'atom-workspace':
+#   'ctrl-shift-p': 'core:move-up'
+#   'ctrl-p': 'core:move-down'
+#
+# You can find more information about keymaps in these guides:
+# * https://atom.io/docs/latest/using-atom-basic-customization#customizing-key-bindings
+# * https://atom.io/docs/latest/behind-atom-keymaps-in-depth
+#
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it in the
+# Atom Flight Manual:
+# https://atom.io/docs/latest/using-atom-basic-customization#cson
+
+'atom-text-editor.vim-mode-plus.normal-mode':
+  ':': 'vim-mode-plus-ex-mode:open'
+  # '!': 'vim-mode-plus-ex-mode:toggle-setting'
+
+'atom-text-editor.vim-mode-plus.insert-mode':
+  'j j': 'vim-mode-plus:reset-normal-mode'
+  'k k': 'vim-mode-plus:reset-normal-mode'
+
+'atom-text-editor.vim-mode-plus:not(.insert-mode)':
+  'space /': 'vim-mode-plus:toggle-highlight-search'
+  'space j': 'window:focus-pane-below'
+  'space k': 'window:focus-pane-above'
+  'space h': 'window:focus-pane-on-left'
+  'space l': 'window:focus-pane-on-right'
+  'shift-k': 'editor:newline'
+  'j': 'vim-mode-plus:move-down-screen'
+  'k': 'vim-mode-plus:move-up-screen'
+  '0': 'vim-mode-plus:move-to-beginning-of-screen-line'
+  '$': 'vim-mode-plus:move-to-last-character-of-screen-line'
+  '^': 'vim-mode-plus:move-to-first-character-of-screen-line'
+
+'body':
+  'cmd-shift-j': 'pane:show-previous-item'
+  'cmd-shift-k': 'pane:show-next-item'
+
+'atom-text-editor':
+  'cmd-space': 'autocomplete-plus:activate'
+
+'atom-workspace':
+  'cmd-g o': 'open-on-github:file'
+  'cmd-g h': 'open-on-github:history'
+  'cmd-g c': 'open-on-github:copy-url'
+  'cmd-g b': 'open-on-github:blame'
