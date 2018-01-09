@@ -26,7 +26,7 @@
 [push]
     default = simple
 [branch]
-    autosetuprebase = always
+	autosetuprebase = always
 [core]
     editor = vim
     excludesfile = ~/.gitignore_global
@@ -34,3 +34,5 @@
 	helper = osxkeychain
 [url "https://"]
 	insteadOf = git://
+[url "https://github.com/"]
+	insteadOf = git://github.com/
