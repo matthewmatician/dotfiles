@@ -3,7 +3,7 @@
 #%{$fg[$CARETCOLOR]%}🐏 💨 %{$resetcolor%} '
 PROMPT='
 $(_user_host)${_current_dir} $(git_prompt_info) $(_ruby_version)
-$(iterm2_prompt_mark) %{$fg[cyan]%}(╯%{$fg[yellow]%}ಠ%{$fg[white]%}‿%{$fg[yellow]%}ಠ%{$fg[cyan]%})╯%{$fg[$CARETCOLOR]%}︵%{$fg[red]%}┻━┻ %{$resetcolor%} '
+%{$fg[cyan]%}(╯%{$fg[yellow]%}ಠ%{$fg[white]%}‿%{$fg[yellow]%}ಠ%{$fg[cyan]%})╯%{$fg[$CARETCOLOR]%}︵%{$fg[red]%}┻━┻ %{$resetcolor%} '
 
 PROMPT2='%{$fg[$CARETCOLOR]%}◀%{$reset_color%} '
 
