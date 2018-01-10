@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DROPBOX=$HOME/dropbox/prefs
+DROPBOX=$HOME/Dropbox/prefs
 PREFS=$HOME/library/Preferences
 
 echo "creating symlinks"
