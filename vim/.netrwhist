@@ -1,9 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/Users/matthew/dotfiles/vim/plugged/syntastic-local-eslint.vim/ftplugin'
-let g:netrw_dirhist_2='/Users/matthew/Documents/ldsChurch/Indexing Acceleration/tyndale/tyndale/assets/js/utils/dates'
-let g:netrw_dirhist_3='/Users/matthew/dotfiles/install'
-let g:netrw_dirhist_4='/usr/local/etc/zookeeper'
-let g:netrw_dirhist_5='/Users/matthew'
-let g:netrw_dirhist_6='/usr/local/etc/zookeeper'
-let g:netrw_dirhist_7='/Users/matthew/Documents/LDS/Infinity/tyndale/assets/css'
