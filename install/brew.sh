@@ -34,39 +34,40 @@ brew install --HEAD neovim
 
 #/Applications
 brew tap caskroom/cask
-brew cask install\
-  atom\
-  bettertouchtool\
-  dropbox\
-  evernote\
-  firefox\
-  google-chrome\
-  handbrake\
-  iterm2\
-  java\
-  kindle\
-  microsoft-office\
-  netbeans-java-se\
-  omnifocus\
-  postman\
-  sketch\
-  skype\
-  skype-for-business\
-  slack\
-  spotify\
-  steam\
-  visual-studio-code
+brew cask install dropbox
+brew cask install atom
+brew cask install bettertouchtool
+brew cask install evernote
+brew cask install firefox
+brew cask install google-chrome
+brew cask install handbrake
+brew cask install iterm2
+brew cask install java
+brew cask install kindle
+brew cask install microsoft-office
+brew cask install netbeans-java-se
+brew cask install omnifocus
+brew cask install postman
+brew cask install sketch
+brew cask install skype
+brew cask install skype-for-business
+brew cask install slack
+brew cask install spotify
+brew cask install steam
+brew cask install visual-studio-code
 
 brew cask cleanup
 
 # Fonts
 brew tap caskroom/fonts
-brew cask install\
-  font-hack\
-  font-open-sans\
-  font-open-sans-condensed\
-  font-roboto\
-  font-roboto-condensed
+brew cask install font-hack
+brew cask install font-open-sans
+brew cask install font-open-sans-condensed
+brew cask install font-roboto
+brew cask install font-roboto-condensed
+brew cask install font-zilla-slab
+brew cask install font-consolas-for-powerline
+brew cask install font-consolas
 
 brew cask cleanup
 
