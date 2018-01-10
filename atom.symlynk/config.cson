@@ -73,11 +73,11 @@
   jshint:
     supportLintingJsx: true
   "language-elm":
-    elmOraclePath: "/Users/matthew/.nvm/versions/node/v6.11.3/bin/elm-oracle"
+    elmOraclePath: "~/.nvm/versions/node/v6.11.3/bin/elm-oracle"
   linter: {}
   "linter-eslint":
     fixOnSave: true
-    globalNodePath: "/Users/matthew/.nvm/versions/node/v4.3.1"
+    globalNodePath: "~/.nvm/versions/node/v4.3.1"
     lintHtmlFiles: true
   "linter-jscs":
     esnext: true
