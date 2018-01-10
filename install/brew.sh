@@ -16,6 +16,8 @@ brew install tree
 brew install wget
 
 # development tools
+brew install vim
+brew link vim
 brew install git
 brew install hub
 brew install git-flow
