@@ -37,7 +37,6 @@ brew tap caskroom/cask
 brew cask install\
   atom\
   bettertouchtool\
-  dosbox\
   dropbox\
   evernote\
   firefox\
@@ -52,6 +51,7 @@ brew cask install\
   postman\
   sketch\
   skype\
+  skype-for-business\
   slack\
   spotify\
   steam\
