@@ -24,6 +24,7 @@ fi
 echo "Installing Vim setup"
 ln -s ~/dotfiles/vim ~/.vim
 vim -S vim/plugins.vim +PlugInstall +qa
+vim/plugged/YouCompleteMe/install.py --js-completer
 ln -s ~/dotfiles/.vimrc ~/.vimrc
 
 echo "Installing NPM modules"
