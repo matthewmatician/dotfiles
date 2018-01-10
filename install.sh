@@ -29,8 +29,11 @@ ln -s ~/dotfiles/.vimrc ~/.vimrc
 echo "Installing NPM modules"
 sudo npm install -g eslint
 
-echo "Configuring zsh as default shell"
+echo "Configuring zsh"
+ln -s ~/dotfiles/ordealz.zsh-theme ~/dotfiles/zsh/custom/
+mkdir ~/dotfiles/zsh/custom/plugins/man-colors
+ln -s ~/dotfiles/man-colors.plugin.zsh ~/dotfiles/zsh/custom/plugins/man-colors/
 chsh -s $(which zsh)
-sudo dscl ~ -create /Users/$USER UserShell /usr/local/bin/zsh
+#sudo dscl ~ -create /Users/$USER UserShell /usr/local/bin/zsh
 
 echo "Done. Don't forge to run install/prefs.sh after dropbox is finished."
