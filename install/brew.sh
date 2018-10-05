@@ -21,7 +21,7 @@ brew link vim
 brew install git
 brew install hub
 brew install git-flow
-brew install heroku
+brew install heroku/brew/heroku
 brew install reattach-to-user-namespace
 brew install tmux
 brew install zsh
@@ -70,6 +70,7 @@ brew cask install font-roboto-condensed
 brew cask install font-zilla-slab
 brew cask install font-consolas-for-powerline
 brew cask install font-consolas
+brew cask install font-fira-code
 
 brew cask cleanup
 

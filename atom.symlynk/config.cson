@@ -1,4 +1,6 @@
 "*":
+  "atom-package-deps":
+    ignored: []
   "atom-ternjs":
     inlineFnCompletion: false
     inlineFnCompletionDocumentation: true
@@ -37,7 +39,6 @@
       "language-python"
       "language-ruby"
       "language-ruby-on-rails"
-      "language-shellscript"
       "language-sql"
       "language-toml"
       "line-ending-selector"
@@ -54,11 +55,14 @@
       "package-generator"
       "background-tips"
       "bookmarks"
+      "atom-ternjs"
+      "language-shellscript"
     ]
     telemetryConsent: "no"
   docblockr:
     auto_add_method_tag: true
     deep_indent: true
+    lower_case_primitives: true
   editor:
     fontFamily: "hack"
     invisibles: {}
@@ -78,7 +82,11 @@
   "linter-eslint":
     fixOnSave: true
     globalNodePath: "~/.nvm/versions/node/v4.3.1"
+    ignoreFixableRulesWhileTyping: true
     lintHtmlFiles: true
+    rulesToDisableWhileFixing: [
+      "mocha/no-skipped-tests"
+    ]
   "linter-jscs":
     esnext: true
     onlyConfig: true
@@ -86,25 +94,62 @@
   "linter-ui-default":
     decorateOnTreeView: "Files and Directories"
     hidePanelWhenEmpty: true
-    panelHeight: 69
+    panelHeight: 165
     panelRepresents: "Entire Project"
-    showPanel: true
     showProviderName: true
     statusBarClickBehavior: "Jump to next issue"
     useBusySignal: false
+  "markdown-preview":
+    useGitHubStyle: true
   minimap:
     absoluteMode: true
+    charHeight: 3
+    plugins:
+      cursorline: true
+      cursorlineDecorationsZIndex: 0
+      "git-diff": true
+      "git-diffDecorationsZIndex": 0
+      "highlight-selected": true
+      "highlight-selectedDecorationsZIndex": 0
+      linter: true
+      linterDecorationsZIndex: 0
+      pigments: true
+      pigmentsDecorationsZIndex: 0
+      selection: true
+      selectionDecorationsZIndex: 0
+  "minimap-git-diff":
+    useGutterDecoration: true
+  "minimap-linter": {}
+  pigments:
+    filetypesForColorWords: [
+      "css"
+      "less"
+      "styl"
+      "stylus"
+      "sass"
+      "scss"
+      "html"
+      "js"
+    ]
+  "prettier-atom":
+    formatOnSaveOptions:
+      enabled: true
+    prettierOptions:
+      singleQuote: true
+    useEslint: true
   react: {}
+  teletype:
+    askBeforeJoiningPortalViaExternalApp: false
   term3: {}
   "tree-view":
     squashDirectoryNames: true
   "vim-mode-plus":
     automaticallyEscapeInsertModeOnActivePaneItemChange: true
     clearMultipleCursorsOnEscapeInsertMode: true
-    highlightSearch: false
     incrementalSearch: true
     keymapYToYankToLastCharacterOfLine: true
     statusBarModeStringStyle: "long"
+    useClipboardAsDefaultRegister: false
     useSmartcaseForSearch: true
     wrapLeftRightMotion: true
   "vim-mode-plus-ex-mode":

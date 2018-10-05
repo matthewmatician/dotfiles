@@ -20,6 +20,7 @@ Plug 'mhinz/vim-signify'
 "Plug 'tpope/vim-sleuth' " detect indent style (tabs vs. spaces)
 "Plug 'Raimondi/delimitMate' "Auto-closing of parenthesis and stuff
 Plug 'Valloric/YouCompleteMe' "Code completion
+Plug 'rickhowe/diffchar.vim' "Word/character level diffing
 
 " javascript
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }

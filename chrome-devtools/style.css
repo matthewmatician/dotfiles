@@ -1,0 +1,26 @@
+:host-context(.platform-linux) .monospace,
+:host-context(.platform-linux) .source-code,
+.platform-linux .monospace,
+.platform-linux .source-code {
+  font-family: "Operator Mono Lig" !important;
+}
+
+.monospace,
+.source-code {
+  font-family: "Operator Mono Lig" !important;
+}
+
+::shadow .monospace,
+::shadow .source-code {
+  font-family: "Operator Mono Lig" !important;
+}
+
+.webkit-html-attribute-name,
+.cm-js-keyword,
+.cm-js-comment,
+.cm-comment,
+.cm-css-comment,
+.cm-xml-comment,
+.webkit-html-comment,
+.webkit-css-comment,
+.webkit-css-important{font-style: italic;}

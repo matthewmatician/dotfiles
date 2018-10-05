@@ -1,0 +1,6 @@
+#!/bin/bash
+# export PATH=$PATH:/usr/local/bin
+
+read -p "2FA Code: " AUTH_CODE
+printf "\n$1\n$AUTH_CODE\ny" | /opt/cisco/anyconnect/bin/vpn -s connect ravpn.ldschurch.org/external
+

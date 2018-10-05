@@ -7,7 +7,7 @@
 --follow
 
 # ignore directories
---ignore-dir=node_modules,dist
+--ignore-dir=node_modules,dist,bower_components
 
 # Colors
 # The recognized attributes are clear, reset, dark, bold, underline, underscore,

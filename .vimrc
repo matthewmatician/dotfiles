@@ -28,10 +28,16 @@ source ~/.vim/plugins.vim
 " Color Scheme
 set number
 let g:solarized_termcolors=256
+let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+"set termguicolors
 set background=dark
 color solarized
 hi clear SignColumn
 hi SyntasticWarningSign ctermfg=214 guifg=#ffaf00 "Yellow warnings
+hi Comment cterm=italic
+hi htmlArg cterm=italic
+hi type cterm=italic
 
 "Formatting
 set nowrap                      " wrap long lines
