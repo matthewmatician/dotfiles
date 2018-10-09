@@ -1,0 +1,113 @@
+{
+    "editor.fontSize": 16,
+    "editor.fontFamily": "Operator Mono Lig for Powerline",
+    "editor.fontLigatures": true,
+    "editor.minimap.renderCharacters": true,
+    "editor.tabSize": 2,
+    "editor.quickSuggestionsDelay": 400,
+    "editor.minimap.enabled": false,
+
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+
+    "window.zoomLevel": 0,
+    "terminal.external.osxExec": "iTerm.app",
+    "terminal.integrated.drawBoldTextInBrightColors": false,
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.fontWeight": 200,
+    "terminal.integrated.fontWeightBold": 500,
+
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#165686",
+        "statusBar.noFolderBackground": "#165686",
+        "statusBar.debuggingBackground": "#165686",
+        "terminal.ansiBlack": "#000",
+        "terminal.ansiBlue": "#039efc",
+        "terminal.ansiBrightBlue": "#68a0df",
+        "terminal.ansiBrightBlack": "#686868",
+        "terminal.ansiRed": "#b81400",
+        "terminal.ansiBrightRed": "#ff6e67",
+        "terminal.ansiGreen": "#8fac00",
+        "terminal.ansiBrightGreen": "#82c100",
+        "terminal.ansiYellow": "#c7c400",
+        "terminal.ansiBrightYellow": "#ddd060",
+        "terminal.ansiMagenta": "#ca30c7",
+        "terminal.ansiBrightMagenta": "#ff77ff",
+        "terminal.ansiCyan": "#00c5c7",
+        "terminal.ansiBrightCyan": "#60fdff",
+        "terminal.ansiWhite": "#c7c7c7",
+        "terminal.ansiBrightWhite": "#ffffff"
+    },
+    "workbench.editor.enablePreview": false,
+    "workbench.list.openMode": "doubleClick",
+    "workbench.statusBar.feedback.visible": false,
+    "workbench.startupEditor": "newUntitledFile",
+
+    "eslint.autoFixOnSave": true,
+    "eslint.validate": [
+        { "language": "html", "autoFix": true },
+        "javascript",
+        "javascriptreact"
+    ],
+    "eslint.options": {
+        "rules": {
+            "no-debugger": "off",
+            "mocha/no-skipped-tests": "off"
+        }
+    },
+
+    "git.autofetch": true,
+    "gitlens.advanced.messages": {
+        "suppressShowKeyBindingsNotice": true
+    },
+    "gitlens.gitExplorer.location": "scm",
+    "gitlens.historyExplorer.location": "scm",
+    "gitlens.resultsExplorer.location": "scm",
+
+    "vim.leader": "<space>",
+    "vim.easymotion": true,
+    "vim.easymotionMarkerBackgroundColor": "rgba(80,80,80,0.7)",
+    "vim.easymotionMarkerForegroundColorOneChar": "white",
+    "vim.easymotionMarkerForegroundColorTwoChar": "white",
+    "vim.easymotionMarkerFontSize": "12",
+    "vim.easymotionMarkerYOffset": 16,
+    "vim.useSystemClipboard": false,
+    "vim.incsearch": true,
+    "vim.hlsearch": true,
+    "vim.normalModeKeyBindings": [
+        {
+            "before": ["<leader>", "h"],
+            "commands": ["workbench.action.focusLeftGroup"]
+        },
+        {
+            "before": ["<leader>", "l"],
+            "commands": ["workbench.action.focusRightGroup"]
+        }
+    ],
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["k", "k"],
+            "after": ["<esc>"]
+        },
+        {
+            "before": ["j", "j"],
+            "after": ["<esc>"]
+        }
+    ],
+    "vim.statusBarColorControl": false,
+    "vim.statusBarColors": {
+        "normal": "#165686",
+        "insert": "#457C15",
+        "visual": "#840E3D",
+        "visualline": "#940E2D",
+        "visualblock": "#A3BE8C",
+        "replace": "#D08770"
+    },
+    "git.confirmSync": false,
+    "editor.wordWrapColumn": 150,
+    "editor.formatOnPaste": true,
+    "editor.acceptSuggestionOnEnter": "smart",
+    "workbench.colorTheme": "Operator Mono Dark Theme",
+    "workbench.fontAliasing": "auto",
+    "workbench.editor.openPositioning": "last"
+}

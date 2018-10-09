@@ -16,7 +16,7 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 chflags nohidden ~/Library
 
 # echo "disable resume system wide"
-# defaults write NSGlobalDomainNSQuitAlwaysKeepWindows -bool false
+defaults write NSGlobalDomainNSQuitAlwaysKeepWindows -bool false
 
 echo "Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
@@ -28,7 +28,7 @@ defaults write NSGlobalDomain AppleFontSmoothing -int 2
 # defaults write com.apple.dock no-glass -bool true
 
 # Automatically hide and show the Dock
-# defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide -bool true
 
 # echo "Make Dock icons of hidden applications translucent"
 # defaults write com.apple.dock showhidden -bool true
@@ -40,7 +40,7 @@ defaults write NSGlobalDomain AppleFontSmoothing -int 2
 #defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
 
 # Show remaining battery time; hide percentage
-# defaults write com.apple.menuextra.battery ShowPercent -string "NO"
+ defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 # defaults write com.apple.menuextra.battery ShowTime -string "YES"
 
 # echo "Always show scrollbars"
@@ -65,10 +65,10 @@ echo "Enable text selection in finder quickLook"
 defaults write com.apple.finder QLEnableTextSelection -bool YES
 
 # echo "Expand print panel by default"
-# defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 
 #echo "Disable the “Are you sure you want to open this application?” dialog"
-#defaults write com.apple.LaunchServices LSQuarantine -bool false
+defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 #echo "Disable shadow in screenshots"
 #defaults write com.apple.screencapture disable-shadow -bool true
@@ -77,10 +77,10 @@ defaults write com.apple.finder QLEnableTextSelection -bool YES
 # defaults write com.apple.dock mouse-over-hilte-stack -bool true
 
 # echo "Enable spring loading for all Dock items"
-# defaults write enable-spring-load-actions-on-all-items -bool true
+defaults write enable-spring-load-actions-on-all-items -bool true
 
 # echo "Show indicator lights for open applications in the Dock"
-# defaults write com.apple.dock show-process-indicators -bool true
+defaults write com.apple.dock show-process-indicators -bool true
 
 # Don’t animate opening applications from the Dock
 # defaults write com.apple.dock launchanim -bool false
@@ -110,9 +110,9 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 30
 # defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
 
 # echo "Automatically open a new Finder window when a volume is mounted"
-# defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
-# defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
-# defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
+defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
+defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
+defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 
 # echo "Display full POSIX path as Finder window title"
 # defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
@@ -121,7 +121,7 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 30
 # defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
 # echo "Avoid creating .DS_Store files on network volumes"
-# defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
 # echo "Disable the warning when changing a file extension"
 # defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
@@ -130,7 +130,7 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 30
 # /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
 
 # echo "Enable snap-to-grid for desktop icons"
-# /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 
 # echo "Disable the warning before emptying the Trash"
 # defaults write com.apple.finder WarnOnEmptyTrash -bool false
@@ -159,10 +159,10 @@ defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 # defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
 
 # Remove useless icons from Safari’s bookmarks bar
-# defaults write com.apple.Safari ProxiesInBookmarksBar "()"
+defaults write com.apple.Safari ProxiesInBookmarksBar "()"
 
 # echo "Add a context menu item for showing the Web Inspector in web views"
-# defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 #echo "Only use UTF-8 in Terminal.app"
 #defaults write com.apple.terminal StringEncodings -array 4
@@ -174,7 +174,7 @@ defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 # defaults write com.apple.iTunes disablePing -bool true
 
 # echo "Make ⌘ + F focus the search input in iTunes"
-# defaults write com.apple.iTunes NSUserKeyEquivalents -dict-add "Target Search Field" "@F"
+defaults write com.apple.iTunes NSUserKeyEquivalents -dict-add "Target Search Field" "@F"
 
 # Disable send and reply animations in Mail.app
 # defaults write com.apple.Mail DisableReplyAnimations -bool true

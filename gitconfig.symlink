@@ -1,7 +1,7 @@
 # gitconfig
 [user]
 	name = Matthew Larson
-	email = matthewmatician@gmail.com
+	email = matthew.larson@familysearch.org
 [color]
     diff = auto
     status = auto
