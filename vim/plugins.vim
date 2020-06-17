@@ -1,34 +1,52 @@
 call plug#begin('~/.vim/plugged')
 
-" Look/Feel
-Plug 'altercation/vim-colors-solarized' "Color scheme
-Plug 'ayu-theme/ayu-vim' "New color scheme
-Plug 'vim-airline/vim-airline' "Fancy Status Line
-Plug 'vim-airline/vim-airline-themes' "Fancy Status Line
+" color schemes
+Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
+Plug 'ayu-theme/ayu-vim'
 "Plug 'chriskempson/base16-vim'
 "Plug 'nanotech/jellybeans.vim'
 
+" Status line
+Plug 'vim-airline/vim-airline' "Fancy Status Line
+Plug 'vim-airline/vim-airline-themes' "Fancy Status Line
+Plug 'google/vim-searchindex'
+
+" gutter
+Plug 'airblade/vim-gitgutter'
+"Plug 'mhinz/vim-signify'
+Plug 'w0rp/ale' "Linting
+"Plug 'scrooloose/syntastic'
+
+" Coding helps
+Plug 'machakann/vim-highlightedyank' "Temporary highlighting of yanked text
+
+"Code completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+"Plug 'ternjs/tern_for_vim'
+Plug 'rickhowe/diffchar.vim' "Word/character level diffing
+"Plug 'tpope/vim-sleuth' " detect indent style (tabs vs. spaces)
+
 " utilities
 Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdtree', "{ 'on':  'NERDTreeToggle' }
 Plug 'kien/ctrlp.vim'
-"Plug 'scrooloose/syntastic'
-Plug 'neomake/neomake'
-Plug 'mhinz/vim-signify'
+"Plug 'neomake/neomake'
 "Plug 'tpope/vim-vinegar'
 "Plug 'tpope/vim-surround'
 "Plug 'tpope/vim-repeat'
-"Plug 'tpope/vim-sleuth' " detect indent style (tabs vs. spaces)
 "Plug 'Raimondi/delimitMate' "Auto-closing of parenthesis and stuff
-Plug 'Valloric/YouCompleteMe' "Code completion
-Plug 'rickhowe/diffchar.vim' "Word/character level diffing
 
 " javascript
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'othree/yajs.vim'
 Plug 'mtscout6/syntastic-local-eslint.vim', { 'for': 'javascript' }
-"Plug 'moll/vim-node', { 'for': 'javascript' }
-"Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
-Plug 'ternjs/tern_for_vim'
+Plug 'moll/vim-node', { 'for': 'javascript' }
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 "Plug 'elzr/vim-json', { 'for': 'json' }
 "Plug 'kchmck/vim-coffee-script'
 
@@ -43,7 +61,6 @@ Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 "Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " On-demand loading
-"Plug 'scrooloose/nerdtree', "{ 'on':  'NERDTreeToggle' }
 "Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 " Using git URL
