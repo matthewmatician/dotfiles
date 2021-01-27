@@ -29,6 +29,8 @@
 --type-set=less=.less
 --type-set=html=.html,.mustache,.handlebars,.tmpl
 --type-set=json=.json
+--type-set=js=.js,.ts,.es6
+--type-set=stories=.stories.js
 --type-set=md=.markdown,.md
 --type-set=svg=.svg
 --type-set=ts=.ts

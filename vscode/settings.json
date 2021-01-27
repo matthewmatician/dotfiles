@@ -82,6 +82,22 @@
         {
             "before": ["<leader>", "l"],
             "commands": ["workbench.action.focusRightGroup"]
+        },
+        {
+            "before": ["<leader>", "/"],
+            "commands": [":nohl"]
+        },
+        {
+            "before": ["<leader>", "o"],
+            "commands": ["workbench.action.quickOpen"]
+        },
+        {
+            "before": ["<leader>", "f"],
+            "commands": ["workbench.view.explorer"]
+        },
+        {
+            "before": ["<leader>", "i"],
+            "commands": ["editor.action.showHover"]
         }
     ],
     "vim.insertModeKeyBindings": [
@@ -107,7 +123,45 @@
     "editor.wordWrapColumn": 150,
     "editor.formatOnPaste": true,
     "editor.acceptSuggestionOnEnter": "smart",
-    "workbench.colorTheme": "Operator Mono Dark Theme",
     "workbench.fontAliasing": "auto",
-    "workbench.editor.openPositioning": "last"
+    "workbench.editor.openPositioning": "last",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "breadcrumbs.enabled": false,
+    "gitlens.views.repositories.location": "scm",
+    "gitlens.views.fileHistory.location": "scm",
+    "gitlens.views.lineHistory.location": "scm",
+    "gitlens.views.compare.location": "scm",
+    "gitlens.views.search.location": "scm",
+    "liveshare.featureSet": "stable",
+    "terminal.integrated.fontFamily": "Operator Mono Lig for Powerline",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "workbench.editor.showTabs": false,
+    "vim.visualModeKeyBindingsNonRecursive": [
+    ],
+    "bracketPairColorizer.consecutivePairColors": [
+        "()",
+        "[]",
+        "{}",
+        "<>",
+        [
+            "#7c6f64",
+            "#a89984",
+            "#d5c4a1",
+            "#8ec07c",
+            "#83a598",
+            "#d3869b",
+            "#fb4934",
+            "#fe8019",
+            "#fabd2f",
+            "#b8bb26"
+        ],
+        "#cc241d"
+    ],
+    "workbench.colorTheme": "Operator Mono Dark Theme",
+    "editor.renderControlCharacters": true,
+    "editor.minimap.scale": 2,
+    "editor.minimap.size": "fit",
+    "typescript.updateImportsOnFileMove.enabled": "always",
 }

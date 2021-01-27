@@ -67,5 +67,45 @@
     {
         "key": "cmd+n",
         "command": "-workbench.action.files.newUntitledFile"
-    }
+    },
+    {
+        "key": "shift+alt+o",
+        "command": "-workbench.action.gotoSymbol"
+    },
+    {
+        "key": "cmd+o",
+        "command": "workbench.action.quickOpen"
+    },
+    {
+        "key": "cmd+p",
+        "command": "-workbench.action.quickOpen"
+    },
+    {
+        "key": "cmd+f",
+        "command": "workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "cmd+b",
+        "command": "-workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "cmd+space",
+        "command": "editor.action.triggerSuggest",
+        "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+space",
+        "command": "-editor.action.triggerSuggest",
+        "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "cmd+k cmd+i",
+        "command": "-editor.action.showHover",
+        "when": "editorTextFocus && inDebugMode"
+    },
+    {
+        "key": "cmd+i",
+        "command": "editor.action.showHover",
+        "when": "editorTextFocus"
+    },
 ]

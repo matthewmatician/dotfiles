@@ -21,16 +21,13 @@ set encoding=utf-8
 call plug#begin('~/.vim/plugged')
 
 " color schemes
-" Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
-Plug 'ayu-theme/ayu-vim'
-Plug 'chriskempson/base16-vim'
-"Plug 'nanotech/jellybeans.vim'
-Plug 'machakann/vim-highlightedyank' "Temporary highlighting of yanked text
+" Plug 'ayu-theme/ayu-vim'
+" Plug 'chriskempson/base16-vim'
+" Plug 'nanotech/jellybeans.vim'
 
-" Better display for messages
-set cmdheight=2
+Plug 'machakann/vim-highlightedyank' "Temporary highlighting of yanked text
 
 " Status line
 Plug 'vim-airline/vim-airline' "Fancy Status Line
@@ -44,53 +41,52 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'scrooloose/syntastic'
 
 " Coding helps
-"Plug 'Valloric/YouCompleteMe' "Code completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'ternjs/tern_for_vim'
-"Plug 'rickhowe/diffchar.vim' "Word/character level diffing
+Plug 'rickhowe/diffchar.vim' "Word/character level diffing
 "Plug 'tpope/vim-sleuth' " detect indent style (tabs vs. spaces)
 
 " utilities
-Plug 'tpope/vim-obsession'
+" Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/nerdtree', "{ 'on':  'NERDTreeToggle' }
-" Plug 'kien/ctrlp.vim'
+" Plug 'scrooloose/nerdtree', "{ 'on':  'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'tomtom/tcomment_vim'
 "Plug 'neomake/neomake'
-"Plug 'tpope/vim-vinegar'
-"Plug 'tpope/vim-surround'
-"Plug 'tpope/vim-repeat'
-"Plug 'Raimondi/delimitMate' "Auto-closing of parenthesis and stuff
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'jiangmiao/auto-pairs' "Auto-closing of parenthis, curlies, quoutes, etc.
+" Plug 'kkoomen/vim-doge'
+" Plug 'easymotion/vim-easymotion'
+" Plug 'justinmk/vim-sneak'
 
 " javascript
-"Plug 'othree/yajs.vim'
-"Plug 'amadeus/vim-jsx', { 'for': 'javascript' }
-"Plug 'heavenshell/vim-jsdoc', {'for': 'javascript' }
+Plug 'maxmellon/vim-jsx-pretty', { 'for': 'javascript' }
+" Plug 'heavenshell/vim-jsdoc', {'for': 'javascript' }
 " Plug 'jonsmithers/vim-html-template-literals', { 'for': 'javascript' }
-"Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-"Plug 'othree/javascript-libraries-syntax.vim'
-" Plug 'mtscout6/syntastic-local-eslint.vim', { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 "Plug 'moll/vim-node', { 'for': 'javascript' }
-"Plug 'ap/vim-css-color', { 'for': 'css' }
-"Plug 'jxnblk/vim-mdx-js'
-"Plug 'elzr/vim-json', { 'for': 'json' }
+Plug 'jxnblk/vim-mdx-js'
+Plug 'elzr/vim-json', { 'for': 'json' }
 "Plug 'kchmck/vim-coffee-script'
 "Plug 'nikvdp/ejs-syntax'
+Plug 'alvan/vim-closetag'
 
 " typescript
-"Plug 'leafgarland/typescript-vim'
-"Plug 'peitalin/vim-jsx-typescript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
 " css and preprocessors
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'chrisbra/Colorizer'
 "Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 "Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] }
 "Plug 'groenewege/vim-less', { 'for': 'less' }
 "Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 
-" Group dependencies, vim-snippets depends on ultisnips
-"Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" Snipz
+Plug 'SirVer/ultisnips'
 
 " On-demand loading
 "Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
@@ -105,7 +101,6 @@ Plug 'k0kubun/vim-open-github'
 "Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 
 " Plugin outside ~/.vim/plugged with post-update hook
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 
 " Unmanaged plugin (manually installed and updated)
 "Plug '~/my-prototype-plugin'
@@ -113,6 +108,9 @@ Plug 'k0kubun/vim-open-github'
 " Add plugins to &runtimepath
 call plug#end()
 
+
+" vim-repeat on these plugins:
+" silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
 " ---------------------------------------------------------------------------------
 " #Look
@@ -125,9 +123,12 @@ set t_ZH=[3m
 set t_ZR=[23m
 set termguicolors
 let g:gruvbox_italic=1
+let g:gruvbox_italicize_comments=1
 colorscheme gruvbox
 set background=dark
-"color solarized
+
+" Help me see what highlight group is under the cursor
+command! WhatIsThis echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
 
 set signcolumn=yes
 hi clear SignColumn
@@ -139,21 +140,24 @@ hi GruvboxPurpleSign guibg=NONE ctermbg=NONE
 hi GruvboxAquaSign guibg=NONE ctermbg=NONE
 
 hi clear DiffDelete
-hi DiffDelete guibg=#502a20 guifg=NONE
+hi DiffDelete guibg=NONE guifg=#963e3e
 hi clear DiffAdd
-hi DiffAdd guibg=#3d5833 guifg=NONE
+hi DiffAdd guibg=#314021 guifg=NONE
 hi clear DiffChange
-hi DiffChange guibg=#334048 guifg=NONE
+hi DiffChange guibg=#2d3b42 guifg=NONE
 hi clear Search
-hi Search guibg=#5C4000
+hi Search guibg=#374f5a
 hi clear DiffText
 hi DiffText guibg=#302020
+hi HighlightedyankRegion guibg=#4e90af guifg=white
 
-"hi Comment cterm=italic
+hi htmlArg guifg=#fabd2f gui=italic
+hi jsxAttrib guifg=#fabd2f gui=italic
 
-hi htmlArg cterm=italic
-hi Statement cterm=italic
-hi type cterm=italic
+"for some reason in typescript files, javascriptLineComment isn't being linked to comment
+hi link javascriptLineComment comment
+
+map <leader>. :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 "Formatting
 set nowrap                      " wrap long lines
@@ -162,14 +166,14 @@ set shiftwidth=2                " use indents of 2 spaces
 set expandtab                   " tabs are spaces, not tabs
 set tabstop=2                   " an indentation every four columns
 set softtabstop=2               " let backspace delete indent
-set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
-set matchpairs+=<:>             " match, to be used with %
-set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
+" set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
+" set matchpairs+=<:>             " match, to be used with %
+" set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
 set backspace=indent,eol,start
-set lazyredraw                  " redraw only when we need to
+" set lazyredraw                  " redraw only when we need to
 
 " Remove trailing whitespaces and ^M chars
-autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+" autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 
 " Misc
 set laststatus=2
@@ -180,38 +184,71 @@ set whichwrap=b,s,h,l,<,>,[,]   " backspace and cursor keys wrap to
 set list
 set listchars=tab:,.,trail:.,extends:#,nbsp:.
 
+" vim-json hides quotes, but the indent-shift is annoying. This turns that off
+let g:vim_json_syntax_concealcursor = 'nc'
+
+" netrw
+let g:netrw_liststyle = 3
+let g:netrw_banner = 0
+let g:netrw_fastbrowse = 0 "Allows netrw buffers to close. See https://github.com/tpope/vim-vinegar/issues/13
+
+" Better display for messages
+set cmdheight=2
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=a
+
 "Airline settings
+let g:airline_theme='base16_gruvbox_dark_hard'
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#hunks#enabled = 0
 let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#hunks#hunk_symbols = ['+', '•', '-']
 let g:airline_section_x = airline#section#create_right(['filetype'])
-let g:airline_theme='gruvbox'
-" let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#obsession#enabled = 1
-let g:airline#extensions#obsession#indicator_text = '★'
-"let g:airline#extensions#tabline#enabled=1
-"let g:airline#extensions#tabline#buffer_idx_mode=1
+" let g:airline#extensions#obsession#enabled = 1
+" let g:airline#extensions#obsession#indicator_text = '★'
 let g:airline#extension#coc#enabled = 1
-
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+" let g:airline_section_x='filetype'
 
 "Syntastic Options
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
 
-"Signify Options
-"let g:signify_vcs_list = [ 'git' ]
-"let g:signify_sign_add               = '+'
-"let g:signify_sign_change            = '•'
-"let g:signify_sign_delete            = '-'
+" "syntax highlighting consistency:
+" " Set filetype=typescript.tsx (required by coc-tsserver)
+" " Set syntax as typescriptreact (for default vim ts syntax)
+" " Set the same for js, jsx, ts, tsx so highlighting is consistent
+" autocmd BufNewFile,BufRead *.tsx,*.ts
+"       \ set filetype=typescript.tsx |
+"       \ set syntax=typescriptreact
 
 "Gitgutter Options
-let g:gitgutter_override_sign_column_highlight = 0
-let g:gitgutter_sign_added              = '✚'
-let g:gitgutter_sign_modified           = '●'
-let g:gitgutter_sign_modified_removed   = '●'
-let g:gitgutter_sign_removed            = '×͢'
+ let g:gitgutter_override_sign_column_highlight = 0
+ let g:gitgutter_sign_added              = '┃'
+ let g:gitgutter_sign_modified           = '│'
+ let g:gitgutter_sign_modified_removed   = '│'
+ let g:gitgutter_sign_removed            = '×͢'
+
+"CloseTag options
+" Enable auto close tags with <tag|>
+" Skip with <leader>>
+let g:closetag_filetypes = 'html,typescript.tsx'
+let g:closetag_close_shortcut = '<leader>>'
+
+" Colorizer Options
+let g:colorizer_auto_filetype='css,html,typescript.tsx'
+" let g:colorizer_use_virtual_text = 1
+let g:colorizer_disable_bufleave = 1
+
+" AutoPairs options
+let g:AutoPairsMapSpace=0
+let g:AutoPairsMultilineClose=0
+
+" Sneak options
+" map f <Plug>Sneak_s
+" map F <Plug>Sneak_S
 
 " ---------------------------------------------------------------------------------
 " #Control
@@ -221,7 +258,7 @@ set confirm "Confirm instead of failing when stuff's unsaved
 set mouse=a "Use the Mouse
 if !has("nvim")
     "set clipboard=exclude:.* "Kill unnamed yank mapping to clipboard
-    set ttymouse=xterm2 "Needed to drag splits in tmux
+    " set ttymouse=xterm2 "Needed to drag splits in tmux
 endif
 let mapleader=' ' "Use the space as the leader key
 set ttyfast "Fast scrolling with mouse (removed in nvim)
@@ -232,10 +269,10 @@ set virtualedit=onemore "Allow for cursor beyond last character
 set splitbelow
 set splitright
 set diffopt+=vertical
-set winheight=10
-set winminheight=3
-set scrolljump=5                " lines to scroll when cursor leaves screen
-set scrolloff=3                 " minimum lines to keep above and below cursor
+" set winheight=10
+" set winminheight=3
+" set scrolljump=5                " lines to scroll when cursor leaves screen
+" set scrolloff=3                 " minimum lines to keep above and below cursor
 set wildmenu
 set wildmode=list:longest,full  " command <Tab> completion, list matches, then longest common part, then all.
 let g:highlightedyank_highlight_duration=300
@@ -246,13 +283,13 @@ set hlsearch                    " Hilight search results
 set showmatch                   " Show search results as I type
 set ignorecase
 set smartcase
-set wildignorecase
+" set wildignorecase
 
 "Cycling errors
-command! Lnext try | lnext | catch | lfirst | catch | endtry
-command! Lprev try | lprev | catch | llast | catch | endtry
-cabbrev ln Lnext
-cabbrev lp Lprev
+" command! Lnext try | lnext | catch | lfirst | catch | endtry
+" command! Lprev try | lprev | catch | llast | catch | endtry
+" cabbrev ln Lnext
+" cabbrev lp Lprev
 
 " ---------------------------------------------------------------------------------
 " #State
@@ -270,12 +307,14 @@ set backup
 set backupdir=~/.vim/backup
 
 " Persistent views
-" set viewdir=~/.vim/views
-" au BufWinLeave *.* silent! mkview  "make vim save view (state) (folds, cursor, etc)
-" au BufWinEnter *.* silent! loadview "make vim load view (state) (folds, cursor, etc)
+set viewdir=~/.vim/views
+set viewoptions=folds,cursor
+au BufWinLeave *.* silent! mkview  "make vim save view (state) (folds, cursor, etc)
+au BufWinEnter *.* silent! loadview "make vim load view (state) (folds, cursor, etc)
 
 " Session directory
 set directory=~/.vim/swap
+
 
 " ---------------------------------------------------------------------------------
 " #Mappings
@@ -286,15 +325,15 @@ imap kk <esc>
 imap hh <esc>
 
 "Terminal mode version (nvim)
-if has("nvim")
-    tmap <Space>hj <C-\><C-n><C-W>hj
-    tmap <Space>hk <C-\><C-n><C-W>hk
-    tmap <Space>kj <C-\><C-n><C-W>kj
-    tmap <Space>kk <C-\><C-n><C-W>kk
-    tmap jj <C-\><C-n>
-    tmap kk <C-\><C-n>
-    tmap hh <C-\><C-n>
-endif
+" if has("nvim")
+"     tmap <Space>hj <C-\><C-n><C-W>hj
+"     tmap <Space>hk <C-\><C-n><C-W>hk
+"     tmap <Space>kj <C-\><C-n><C-W>kj
+"     tmap <Space>kk <C-\><C-n><C-W>kk
+"     tmap jj <C-\><C-n>
+"     tmap kk <C-\><C-n>
+"     tmap hh <C-\><C-n>
+" endif
 
 "Easier moving/resizing in windows
 map <leader>j <C-W>j
@@ -329,9 +368,26 @@ nmap <silent><leader>/ :noh<CR>
 
 "buffer navigation
 nmap <silent><leader>b :Buffers<CR>
+nmap <silent><leader>vb :vs<cr>:Buffers<CR>
 nmap <silent><leader>s :Rg<CR>
+nmap <silent><leader>vs :vs<cr>:Rg<CR>
 nmap <silent><leader>o :Files<CR>
+nmap <silent><leader>vo :vs<cr>:Files<CR>
 nmap <silent><leader>g :GFiles?<CR>
+
+" moving lines of code around
+
+" Normal mode
+nnoremap <C-k> :m .-2<CR>==
+nnoremap <C-j> :m .+1<CR>==
+
+" Insert mode
+inoremap <C-j> <ESC>:m .+1<CR>==gi
+inoremap <C-k> <ESC>:m .-2<CR>==gi
+
+" Visual mode
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " Shortcuts
 " Change Working Directory to that of the current file
@@ -339,7 +395,8 @@ cmap cwd lcd %:p:h
 cmap cd. lcd %:p:h
 
 " Error navigation
-nmap <silent><leader>e :Lnext<cr>
+nmap <silent><leader>e <Plug>(coc-diagnostic-prev)
+nmap <silent><leader><S-E> <Plug>(coc-diagnostic-prev)
 
 " Use `[c` and `]c` to navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
@@ -362,14 +419,35 @@ function! s:show_documentation()
   endif
 endfunction
 
+" Keep splits when I close files
+nmap <leader>w :call KeepSplitClose(0)<cr>
+
+function! KeepSplitClose(saveFirst)
+  if (a:saveFirst == 1)
+      w!
+  endif
+  let bufferToDelete = bufnr("%")
+  let newBuffer = bufnr("#")
+  if ((newBuffer != -1) && (newBuffer != bufferToDelete) && buflisted(newBuffer))
+      exe "b".newBuffer
+  else
+      bnext
+  endif
+
+  if (bufnr("%") == bufferToDelete)
+      new
+  endif
+  exe "bd".bufferToDelete
+endfunction
+
 "//TODO Learn this to memory
 " Some helpers to edit mode
 " http://vimcasts.org/e/14
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
-map <leader>ew :e %%<cr>
-map <leader>es :sp %%<cr>
-map <leader>ev :vsp %%<cr>
-map <leader>et :tabe %%<cr>
+" cnoremap %% <C-R>=expand('%:h').'/'<cr>
+" map <leader>ew :e %%<cr>
+" map <leader>es :sp %%<cr>
+" map <leader>ev :vsp %%<cr>
+" map <leader>et :tabe %%<cr>
 
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
@@ -380,10 +458,15 @@ map zh zH
 
 " Fix the placement of the cursor on escape
 inoremap <silent> <Esc> <C-O>:stopinsert<CR>
+
 " ---------------------------------------------------------------------------------
 " #Syntax
 " ---------------------------------------------------------------------------------
-" Plug 'sheerun/vim-polyglot'
+" vim-styled-components has issues if it doesn't read the file from the
+" beginning all the time.
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+
 "Syntastic Options
 "let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 2
@@ -432,10 +515,13 @@ inoremap <silent> <Esc> <C-O>:stopinsert<CR>
 "let g:jsdoc_enable_es6=1
 "let g:javascript_plugin_jsdoc = 1
 
-"completion options
+"ultisnips options
+let g:UltiSnipsExpandTrigger="<c-cr>" "This needs to not be tab, so as not to conflict with coc
+let g:UltiSnipsListSnippets="<c-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
+"completion options
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -530,3 +616,8 @@ function! s:fzf_root()
   return fnamemodify(substitute(l:path, '.git', '', ''), ':p:h')
 endfunction
 
+
+command! -bang -nargs=* Grep
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)

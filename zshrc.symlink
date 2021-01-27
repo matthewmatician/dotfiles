@@ -27,7 +27,7 @@ HYPHEN_INSENSITIVE="true"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -49,7 +49,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras git-flow brew colorize heroku npm node man-colors)
+plugins=(git git-extras git-flow brew colorize heroku npm yarn node man-colors)
 
 # User configuration
 
@@ -97,10 +97,10 @@ alias ...='cd ../..'
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-alias l="ls -lah ${colorflag}"
-alias l.="ls -dahl ${colorflag} .*"
-alias la="ls -AF ${colorflag}"
-alias ll="ls -laFh ${colorflag}"
+alias l="ls-git -lah ${colorflag}"
+alias l.="ls-git -dahl ${colorflag} .*"
+alias la="ls-git -AF ${colorflag}"
+alias ll="ls-git -laFh ${colorflag}"
 alias lld="l -d */"
 alias rmf="rm -rf"
 
@@ -118,6 +118,7 @@ alias hideHidden="defaults write com.apple.finder AppleShowAllFiles OFF; killall
 alias grep='grep --color=auto'
 alias df='df -h' # disk free, in Gigabytes, not bytes
 alias du='du -h -c' # calculate disk usage for a folder
+alias sleepless="pmset -g assertions | egrep '(PreventUserIdleSystemSleep|PreventUserIdleDisplaySleep)'"
 
 # Search & Replace in files
 #pattern: replace 's/search/replace/g;' *.file
@@ -155,6 +156,7 @@ alias stfu="osascript -e 'set volume output muted true'"
 alias pumpitup="osascript -e 'set volume 10'"
 alias poop='say fartt fartt poop poop fartt'
 
+alias vim='nvim';
 
 # Source profile (bash or otherwise)
 if [ -f ~/.profile.local ]; then
@@ -184,3 +186,7 @@ export NVM_DIR="$HOME/.nvm"
 # fi
 
 export TARGET_ENV=local
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPS='--extended'
+export FZF_DEFAULT_COMMAND='rg --files --follow --hidden'

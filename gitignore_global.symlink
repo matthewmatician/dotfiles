@@ -1,8 +1,10 @@
+npm-debug.log
+Session.vim
+.tern-port
 .DS_Store
 Thumbs.db
 *~
 *.swp
-Icon
 
 # Thumbnails
 ._*

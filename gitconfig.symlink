@@ -28,8 +28,9 @@
 [branch]
 	autosetuprebase = always
 [core]
-    editor = vim
+    editor = nvim
     excludesfile = ~/.gitignore_global
+    pager = less -F -X
 [credential]
 	helper = osxkeychain
 [url "https://"]
