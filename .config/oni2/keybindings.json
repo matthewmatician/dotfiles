@@ -1,0 +1,8 @@
+
+[
+  // See the onivim documentation for details on the format:
+  // https://onivim.github.io/docs/configuration/key-bindings
+  // Add key bindings here, ie:
+  { "key": "jj", "command": "vim.esc", when: "insertMode" },
+  { "key": "kk", "command": "vim.esc", when: "insertMode" },
+]

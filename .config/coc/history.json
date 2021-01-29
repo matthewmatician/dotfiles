@@ -1,0 +1,16 @@
+{
+  "marketplace": {
+    "%2FUsers%2Fmrl37%2F": {
+      "config%2Fnvim": [
+        "js"
+      ]
+    }
+  },
+  "lists": {
+    "%2FUsers%2Fmrl37%2F": {
+      "config": [
+        "ext"
+      ]
+    }
+  }
+}

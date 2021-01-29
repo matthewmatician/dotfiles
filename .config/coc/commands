@@ -1,0 +1,3 @@
+prettier.formatFile
+workspace.showOutput
+eslint.executeAutoFix

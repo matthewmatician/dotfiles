@@ -1,0 +1,60 @@
+snippet React "React Component" b
+import React from 'react'
+import PropTypes from 'prop-types'
+import { css } from '@emotion/core'
+
+const $1 = ({ $2 }) => {
+	$3
+
+	return (
+		<$4>
+			$5$0
+		</$4>
+	)
+}
+
+$1.propTypes = {
+
+}
+
+export default $1
+endsnippet
+
+snippet ReactFn "react functional component" b
+const $1 = ({ $2 }) => {
+	$3
+
+	return (
+		<$4>
+			$5$0
+		</$4>
+	)
+}
+endsnippet
+
+snippet useS "useState()" b
+const [$1, set$3`!p snip.rv=upperfirst(t[1])`] = useState($2)
+endsnippet
+
+snippet useE "useEffect()" b
+useEffect(() => {
+	${1:${VISUAL}}
+}, [ $2 ])
+endsnippet
+
+snippet useCB "useCallback(fn, inputs)" b
+const ${1:callback} = useCallback(($2) => ${3:{
+	${4:${VISUAL}}
+}}, [$5])
+endsnippet
+
+snippet useM "useMemo(fn, inputs)" b
+const ${1:memoized} = useMemo(() => ${2:{
+		${3:${VISUAL}}
+}}, [$4])
+endsnippet
+
+snippet useR "useRef(defaultValue)" b
+const ${1:ref} = useRef(${2:null})
+endsnippet
+

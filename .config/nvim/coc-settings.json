@@ -1,0 +1,19 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [ "css", "Markdown", "markdown.mdx" ],
+
+  "eslint.autoFixOnSave": true,
+  "eslint.packageManager": "yarn",
+
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+  "prettier.arrowParens": "avoid",
+  "prettier.eslintIntegration": true,
+
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.messageTarget": "float",
+  "diagnostic.errorSign": "⨯",
+  "diagnostic.infoSign": "•",
+  "diagnostic.messageDelay": 600,
+
+  "typescript.suggest.autoImports": false
+}
