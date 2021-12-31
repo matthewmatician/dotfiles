@@ -3,7 +3,7 @@
   "files.exclude": [ "_esy", "node_modules", ".git" ],
   "editor.detectIndentation": true,
   "editor.fontFamily": "Operator Mono Lig for Powerline",
-  "editor.fontSize": 16,
+  "editor.fontSize": 14,
   "editor.fontLigatures": true,
   "editor.largeFileOptimizations": true,
   "editor.highlightActiveIndentGuide": true,

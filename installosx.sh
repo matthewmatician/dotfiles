@@ -99,7 +99,7 @@ echo "Set a shorter Delay until key repeat"
 defaults write NSGlobalDomain InitialKeyRepeat -int 30
 
 #echo "Disable auto-correct"
-#defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
 # Disable opening and closing window animations
 # defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
@@ -158,10 +158,10 @@ defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 # echo "Make Safari’s search banners default to Contains instead of Starts With"
 # defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
 
-# Remove useless icons from Safari’s bookmarks bar
+echo "Remove useless icons from Safari’s bookmarks bar"
 defaults write com.apple.Safari ProxiesInBookmarksBar "()"
 
-# echo "Add a context menu item for showing the Web Inspector in web views"
+echo "Add a context menu item for showing the Web Inspector in web views"
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 #echo "Only use UTF-8 in Terminal.app"
@@ -173,8 +173,16 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 # echo "Disable all the other Ping stuff in iTunes"
 # defaults write com.apple.iTunes disablePing -bool true
 
-# echo "Make ⌘ + F focus the search input in iTunes"
-defaults write com.apple.iTunes NSUserKeyEquivalents -dict-add "Target Search Field" "@F"
+echo "Custom Keyboard Shortcuts"
+defaults write -g NSUserKeyEquivalents -dict-add "Select Next Tab" -string "@\$k"
+defaults write -g NSUserKeyEquivalents -dict-add "Select Previous Tab" -string "@\$j"
+
+defaults write com.apple.iChat NSUserKeyEquivalents -dict-add "Select Next Conversation" "@\$j"
+defaults write com.apple.iChat NSUserKeyEquivalents -dict-add "Select Next Conversation" "@\$j"
+
+defaults write com.microsoft.Outlook NSUserKeyEquivalents -dict-add "Find..." "@\$f"
+defaults write com.microsoft.Outlook NSUserKeyEquivalents -dict-add "Outlook Items Search" "@f"
+
 
 # Disable send and reply animations in Mail.app
 # defaults write com.apple.Mail DisableReplyAnimations -bool true

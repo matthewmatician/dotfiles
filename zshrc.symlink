@@ -67,7 +67,7 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
-export EDITOR='vim'
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -121,8 +121,16 @@ alias du='du -h -c' # calculate disk usage for a folder
 alias sleepless="pmset -g assertions | egrep '(PreventUserIdleSystemSleep|PreventUserIdleDisplaySleep)'"
 
 # Search & Replace in files
+function replace() {
+  perl -pi -w -e `s/$1/$2/g;` $3
+}
+
 #pattern: replace 's/search/replace/g;' *.file
-alias replace="perl -pi -w -e"
+#alias replace="perl -pi -w -e"
+
+# Search & Replace in folder names
+# alias folderReplace="find . -regex '.*docs\/.*js' -type f | rename --make-dirs 's/docs/fixtures/g'"
+
 
 # IP addresses
 alias whereami="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
@@ -165,9 +173,8 @@ fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# Load NVM and node. If slow, comment this out and uncomment the chunk below.
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+# Load FNM and node. If slow, comment this out and uncomment the chunk below.
+eval "$(fnm env)"
 
 # Defer initialization of nvm until nvm, node or a node-dependent command is
 # run. Ensure this block is only run once if .bashrc gets sourced multiple times
@@ -189,4 +196,6 @@ export TARGET_ENV=local
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPS='--extended'
-export FZF_DEFAULT_COMMAND='rg --files --follow --hidden'
+export FZF_DEFAULT_COMMAND='rg --hidden --files --follow --glob "!.git/*"'
+
+eval "$(pyenv init -)"
