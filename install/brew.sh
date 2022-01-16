@@ -37,19 +37,19 @@ brew install rename
 #/Applications
 brew tap homebrew/cask
 brew install dropbox --cask
-brew install bettertouchtool --cask
+#brew install bettertouchtool --cask
 brew install firefox --cask
 brew install google-chrome --cask
 brew install handbrake --cask
 brew install iterm2 --cask
-brew install microsoft-office --cask
-brew install omnifocus --cask
+#brew install microsoft-office --cask
+#brew install omnifocus --cask
 brew install slack --cask
 brew install spotify --cask
 brew install steam --cask
 brew install visual-studio-code --cask
 brew install dozer --cask
-brew install microsoft-teams --cask
+#brew install microsoft-teams --cask
 brew install figma --cask
 
 # brew install atom --cask
@@ -62,15 +62,15 @@ brew install figma --cask
 # brew install skype-for-business --cask
 
 # Fonts
-# brew tap caskroom/fonts
-# brew install font-hack --cask
-# brew install font-open-sans --cask
-# brew install font-open-sans-condensed --cask
-# brew install font-roboto --cask
-# brew install font-roboto-condensed --cask
-# brew install font-zilla-slab --cask
-# brew install font-consolas-for-powerline --cask
-# brew install font-consolas --cask
-# brew install font-fira-code --cask
+brew tap homebrew/cask-fonts
+brew install font-hack --cask
+brew install font-open-sans --cask
+brew install font-open-sans-condensed --cask
+brew install font-roboto --cask
+brew install font-roboto-condensed --cask
+brew install font-zilla-slab --cask
+brew install font-consolas-for-powerline --cask
+brew install font-consolas --cask
+brew install font-fira-code --cask
 
 
