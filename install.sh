@@ -11,7 +11,7 @@ source install/link.sh
 if [ "$(uname)" == "Darwin" ]; then
     echo "Running on OSX"
 
-    echo "Installing node (from nvm)"
+    echo "Installing node (from fnm)"
     source install/nvm.sh
 
     echo "Brewing all the things"
@@ -21,14 +21,14 @@ if [ "$(uname)" == "Darwin" ]; then
     source installosx.sh
 fi
 
-echo "Installing Vim setup"
-ln -s ~/dotfiles/vim ~/.vim
-vim -S vim/plugins.vim +PlugInstall +qa
-vim/plugged/YouCompleteMe/install.py --js-completer
-ln -s ~/dotfiles/.vimrc ~/.vimrc
+" echo "Installing Vim setup"
+" ln -s ~/dotfiles/vim ~/.vim
+" vim -S vim/plugins.vim +PlugInstall +qa
+" vim/plugged/YouCompleteMe/install.py --js-completer
+" ln -s ~/dotfiles/.vimrc ~/.vimrc
 
-echo "Installing NPM modules"
-sudo npm install -g eslint
+" echo "Installing NPM modules"
+" sudo npm install -g eslint
 
 echo "Configuring zsh"
 ln -s ~/dotfiles/ordealz.zsh-theme ~/dotfiles/zsh/custom/

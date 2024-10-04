@@ -141,8 +141,8 @@ echo "Enable snap-to-grid for desktop icons"
 #defaults write com.apple.screensaver askForPassword -int 1
 #defaults write com.apple.screensaver askForPasswordDelay -int 0
 
-echo "Enable tap to click (Trackpad)"
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+# echo "Enable tap to click (Trackpad)"
+# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 
 #echo "Map bottom right Trackpad corner to right-click"
 #defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
@@ -176,8 +176,8 @@ echo "Custom Keyboard Shortcuts"
 defaults write -g NSUserKeyEquivalents -dict-add "Select Next Tab" -string "@\$k"
 defaults write -g NSUserKeyEquivalents -dict-add "Select Previous Tab" -string "@\$j"
 
-defaults write com.apple.iChat NSUserKeyEquivalents -dict-add "Select Next Conversation" "@\$j"
-defaults write com.apple.iChat NSUserKeyEquivalents -dict-add "Select Next Conversation" "@\$j"
+defaults write com.apple.iChat NSUserKeyEquivalents -dict-add "Go to Next Conversation" "@\$J"
+defaults write com.apple.iChat NSUserKeyEquivalents -dict-add "Go to Previous Conversation" "@\$K"
 
 defaults write com.microsoft.Outlook NSUserKeyEquivalents -dict-add "Find..." "@\$f"
 defaults write com.microsoft.Outlook NSUserKeyEquivalents -dict-add "Outlook Items Search" "@f"
@@ -217,3 +217,6 @@ defaults write -g ApplePersistence -bool no
 
 echo "Kill affected applications"
 for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" >/dev/null 2>&1; done
+
+echo "Make double-clicking window title-bars maximise the window"
+defaults write -g AppleActionOnDoubleClick -string "Maximize"
