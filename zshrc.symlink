@@ -53,7 +53,7 @@ plugins=(git git-extras git-flow brew colorize heroku npm yarn node man-colors)
 
 # User configuration
 
-export PATH=$HOME/dotfiles/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin:/sbin
+export PATH=$HOME/dotfiles/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin:/sbin:/opt/homebrew/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -100,7 +100,9 @@ alias .....="cd ../../../.."
 alias l="ls-git -lah ${colorflag}"
 alias l.="ls-git -dahl ${colorflag} .*"
 alias la="ls-git -AF ${colorflag}"
-alias ll="ls-git -laFh ${colorflag}"
+
+# alias ll="ls-git -laFh ${colorflag}"
+# alias ll='paste <(CLICOLOR_FORCE=true ls -ld *) <(for i in *; do if [ -d "$i"/.git ] ; then echo "($(git --git-dir="$i"/.git symbolic-ref --short HEAD))"; else echo; fi; done)'
 alias lld="l -d */"
 alias rmf="rm -rf"
 
@@ -124,6 +126,122 @@ alias sleepless="pmset -g assertions | egrep '(PreventUserIdleSystemSleep|Preven
 function replace() {
   perl -pi -w -e `s/$1/$2/g;` $3
 }
+
+function color () {
+   if   [[ "$1" == "black"  ]]; then echo -e "\033[10;30m$2\033[0m";  # Black
+   elif [[ "$1" == "red"    ]]; then echo -e "\033[10;31m$2\033[0m";  # Red
+   elif [[ "$1" == "green"  ]]; then echo -e "\033[10;32m$2\033[0m";  # Green
+   elif [[ "$1" == "yellow" ]]; then echo -e "\033[10;33m$2\033[0m";  # Yellow
+   elif [[ "$1" == "blue"   ]]; then echo -e "\033[10;34m$2\033[0m";  # Blue
+   elif [[ "$1" == "purple" ]]; then echo -e "\033[10;35m$2\033[0m";  # Purple
+   elif [[ "$1" == "cyan"   ]]; then echo -e "\033[10;36m$2\033[0m";  # Cyan
+   else                            echo -e "\033[10;37m$2\033[0m";  # normal (white)
+   fi;
+}
+
+function branchColor () {
+  local result=""
+
+  # Check if the branch has uncommitted changes
+  if [[ $(git -C "$1" status --porcelain) ]]; then
+    echo -e "\033[10;31m";  # Red
+    return
+  fi
+
+  # Check if the branch was never pushed to origin
+  if ! git -C "$1" rev-parse --abbrev-ref --symbolic-full-name @{u} &>/dev/null; then
+    echo -e "\033[10;35m";  # Purple
+    return
+  fi
+
+  # Check if remote is behind local
+  if [ $(git -C "$1" rev-list --count @{u}..HEAD) -ne 0 ]; then
+    echo -e "\033[10;33m";  # Yellow
+    return
+  fi
+
+  # Check if local is behind remote
+  if [ $(git -C "$1" rev-list --count HEAD..@{u}) -ne 0 ]; then
+    echo -e "\033[10;36m";  # Cyan
+    return
+  fi
+
+  # Otherwise, looking good.
+  echo -e "\033[10;32m";  # Green
+}
+
+function shortStat () {
+  local result=""
+
+  # Check if the branch has uncommitted changes
+  if [[ $(git -C "$1" status --porcelain) ]]; then
+    result+=`color blue "•"`
+  fi
+
+  # Check if the branch was never pushed to origin
+  if ! git -C "$1" rev-parse --abbrev-ref --symbolic-full-name @{u} &>/dev/null; then
+    result+=`color red "⤫"`
+    echo "$result"
+    return
+  fi
+
+  # Check if local and remote have differing commits
+  if [ $(git -C "$1" rev-list --count HEAD..@{u}) -ne 0 ]; then
+    result+=`color green "↓"`
+  fi
+
+  # Check if remote is behind local
+  if [ $(git -C "$1" rev-list --count @{u}..HEAD) -ne 0 ]; then
+    result+=`color gren "↑"`
+  fi
+
+  echo "$result"
+}
+
+# Get branch names for git repos
+function gitBranchll() {
+  paste -d ' ' <(CLICOLOR_FORCE=true ls -al $1) <(
+    target=${1:-.}
+    if [ -d $target ]; then cd $target; fi;
+    find . -maxdepth 1 -exec ls -ad {} + | sed '1s/^/""\n""\n/' | while read -r i; do
+      if [ -d "$i"/.git ]; then
+        echo -e "($(branchColor $i)$(git --git-dir=$i/.git symbolic-ref --short HEAD)\033[0m)";
+      else
+        echo; 
+      fi;
+    done
+  )
+}
+
+# gitLL () {
+#   if [ -d "$1" ]; then
+#     cd "$1";
+#     shift;
+#     gitLL $*;
+#     cd -;
+#     return 0;
+#   fi;
+#   ls -alh $* | while read line; do
+#     permissions=`echo "$line" | cut -d ' ' -f 1`;
+#     folder=`echo "$line" | rev | cut -d ' ' -f 1 | rev`;
+#
+#     if [[ $permissions == lrwx* ]] ; then
+#       coloredLink=`color purple "$folder"`;
+#       echo -e "$line" | sed -e "s%$folder%$coloredLink%";
+#     elif [[ $permissions == drwx* ]] ; then
+#       currentBranch=`(cd $folder >/dev/null 2>&1 && [ -d .git ] && git branch 2>/dev/null | grep \* | cut -d ' ' -f2)`
+#       if [ "$currentBranch" != "" ]; then
+#         currentBranch=`color red " ($currentBranch)"`;
+#       fi;
+#       coloredFolder=`color blue "$folder"`;
+#       echo -e "$line$currentBranch" | sed -e "s%$folder%$coloredFolder%";
+#     else
+#       echo -e "$line $(color green $size)";
+#     fi;
+#   done;
+# }
+
+alias ll='gitBranchll'
 
 #pattern: replace 's/search/replace/g;' *.file
 #alias replace="perl -pi -w -e"
@@ -165,6 +283,8 @@ alias pumpitup="osascript -e 'set volume 10'"
 alias poop='say fartt fartt poop poop fartt'
 
 alias vim='nvim';
+alias vi='nvim';
+alias v='nvim';
 
 # Source profile (bash or otherwise)
 if [ -f ~/.profile.local ]; then
@@ -174,7 +294,7 @@ fi
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Load FNM and node. If slow, comment this out and uncomment the chunk below.
-eval "$(fnm env)"
+eval "$(/opt/homebrew/bin/fnm env)"
 
 # Defer initialization of nvm until nvm, node or a node-dependent command is
 # run. Ensure this block is only run once if .bashrc gets sourced multiple times
@@ -199,3 +319,4 @@ export FZF_DEFAULT_OPS='--extended'
 export FZF_DEFAULT_COMMAND='rg --hidden --files --follow --glob "!.git/*"'
 
 eval "$(pyenv init -)"
+eval "$(/opt/homebrew/bin/brew shellenv)"

@@ -1,33 +1,33 @@
 #!/usr/bin/env sh
 
 # echo "Finder: show all filename extensions"
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+# defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
-# echo "show hidden files by default"
+echo "show hidden files by default"
 defaults write com.apple.Finder AppleShowAllFiles -bool false
 
-# echo "only use UTF-8 in Terminal.app"
+echo "only use UTF-8 in Terminal.app"
 defaults write com.apple.terminal StringEncodings -array 4
 
-# echo "expand save dialog by default"
+echo "expand save dialog by default"
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 
-# echo "show the ~/Library folder in Finder"
+echo "show the ~/Library folder in Finder"
 chflags nohidden ~/Library
 
-# echo "disable resume system wide"
+echo "disable resume system wide"
 defaults write NSGlobalDomainNSQuitAlwaysKeepWindows -bool false
 
 echo "Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
-echo "Enable subpixel font rendering on non-Apple LCDs"
-defaults write NSGlobalDomain AppleFontSmoothing -int 2
+# echo "Enable subpixel font rendering on non-Apple LCDs"
+# defaults write NSGlobalDomain AppleFontSmoothing -int 2
 
 # echo "Enable the 2D Dock"
 # defaults write com.apple.dock no-glass -bool true
 
-# Automatically hide and show the Dock
+echo "Automatically hide and show the Dock"
 defaults write com.apple.dock autohide -bool true
 
 # echo "Make Dock icons of hidden applications translucent"
@@ -39,9 +39,8 @@ defaults write com.apple.dock autohide -bool true
 # Disable menu bar transparency
 #defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
 
-# Show remaining battery time; hide percentage
- defaults write com.apple.menuextra.battery ShowPercent -string "YES"
-# defaults write com.apple.menuextra.battery ShowTime -string "YES"
+echo "Show remaining battery time; Show percentage"
+defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
 # echo "Always show scrollbars"
 # defaults write NSGlobalDomain AppleShowScrollBars -string "Auto"
@@ -64,10 +63,10 @@ defaults write com.apple.finder ShowStatusBar -bool true
 echo "Enable text selection in finder quickLook"
 defaults write com.apple.finder QLEnableTextSelection -bool YES
 
-# echo "Expand print panel by default"
+echo "Expand print panel by default"
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 
-#echo "Disable the “Are you sure you want to open this application?” dialog"
+echo "Disable the “Are you sure you want to open this application?” dialog"
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 #echo "Disable shadow in screenshots"
@@ -77,9 +76,9 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 # defaults write com.apple.dock mouse-over-hilte-stack -bool true
 
 # echo "Enable spring loading for all Dock items"
-defaults write enable-spring-load-actions-on-all-items -bool true
+# defaults write enable-spring-load-actions-on-all-items -bool true
 
-# echo "Show indicator lights for open applications in the Dock"
+echo "Show indicator lights for open applications in the Dock"
 defaults write com.apple.dock show-process-indicators -bool true
 
 # Don’t animate opening applications from the Dock
@@ -98,7 +97,7 @@ defaults write NSGlobalDomain KeyRepeat -int 2
 echo "Set a shorter Delay until key repeat"
 defaults write NSGlobalDomain InitialKeyRepeat -int 30
 
-#echo "Disable auto-correct"
+echo "Disable auto-correct"
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
 # Disable opening and closing window animations
@@ -109,7 +108,7 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 # defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
 # defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
 
-# echo "Automatically open a new Finder window when a volume is mounted"
+echo "Automatically open a new Finder window when a volume is mounted"
 defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
 defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
 defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
@@ -120,7 +119,7 @@ defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 # Increase window resize speed for Cocoa applications
 # defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
-# echo "Avoid creating .DS_Store files on network volumes"
+echo "Avoid creating .DS_Store files on network volumes"
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
 # echo "Disable the warning when changing a file extension"
@@ -129,7 +128,7 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 # echo "Show item info below desktop icons"
 # /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
 
-# echo "Enable snap-to-grid for desktop icons"
+echo "Enable snap-to-grid for desktop icons"
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 
 # echo "Disable the warning before emptying the Trash"
@@ -182,7 +181,6 @@ defaults write com.apple.iChat NSUserKeyEquivalents -dict-add "Select Next Conve
 
 defaults write com.microsoft.Outlook NSUserKeyEquivalents -dict-add "Find..." "@\$f"
 defaults write com.microsoft.Outlook NSUserKeyEquivalents -dict-add "Outlook Items Search" "@f"
-
 
 # Disable send and reply animations in Mail.app
 # defaults write com.apple.Mail DisableReplyAnimations -bool true
