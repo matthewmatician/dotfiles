@@ -46,7 +46,7 @@ formulae=(
 # /Applications
 casks=(
     dropbox
-    # bettertouchtool
+    bettertouchtool
     firefox
     google-chrome
     handbrake
@@ -57,6 +57,7 @@ casks=(
     spotify
     steam
     visual-studio-code
+    jordanbaird-ice             # Ice, menu bar manager
     # dozer                     # no longer in Homebrew
     # microsoft-teams
     figma
