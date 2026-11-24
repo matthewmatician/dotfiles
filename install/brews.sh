@@ -46,6 +46,8 @@ formulae=(
 # /Applications
 casks=(
     dropbox
+    claude                      # Claude desktop app (claude.ai)
+    claude-code                 # Claude Code CLI
     # bettertouchtool
     firefox
     google-chrome
@@ -96,6 +98,19 @@ existing_app() {
     return 1
 }
 
+# existing_command CASK
+# Succeeds, printing the path, when a CLI cask's command is already on PATH from
+# another installer (e.g. Claude Code's native installer in ~/.local/bin), so
+# Homebrew doesn't install a second, conflicting copy.
+existing_command() {
+    local cmd
+    case "$1" in
+        claude-code) cmd=claude ;;
+        *) return 1 ;;
+    esac
+    command -v "$cmd" 2>/dev/null
+}
+
 installed_formulae="$(brew list --formula -1 2>/dev/null)"
 installed_casks="$(brew list --cask -1 2>/dev/null)"
 
@@ -126,6 +141,8 @@ for name in "${casks[@]}"; do
     if grep -qx "$name" <<<"$installed_casks"; then
         echo "  ok       $name"
     elif app="$(existing_app "$name")"; then
+        echo "  skip     $name ($app already exists, not managed by Homebrew)"
+    elif app="$(existing_command "$name")"; then
         echo "  skip     $name ($app already exists, not managed by Homebrew)"
     elif [[ "$name" == font-* ]]; then
         add_pending "$name" "font"

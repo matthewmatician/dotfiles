@@ -149,8 +149,18 @@ echo "Enable snap-to-grid for desktop icons"
 #defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
 
 echo "Enable three-finger drag (Trackpad); may need a logout to take effect"
-defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
+# Mirrors what System Settings > Accessibility > Pointer Control does: enable drag,
+# and move three-finger swipes to four fingers (0) so they don't conflict.
+for domain in com.apple.AppleMultitouchTrackpad com.apple.driver.AppleBluetoothMultitouch.trackpad; do
+    defaults write $domain TrackpadThreeFingerDrag -bool true
+    defaults write $domain TrackpadThreeFingerHorizSwipeGesture -int 0
+    defaults write $domain TrackpadThreeFingerVertSwipeGesture -int 0
+done
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerDragGesture -int 1
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerHorizSwipeGesture -int 0
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerVertSwipeGesture -int 0
+# Ask the current session to reload the settings (a logout may still be needed)
+/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u 2>/dev/null || true
 
 # echo "Disable Safari’s thumbnail cache for History and Top Sites"
 # defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
