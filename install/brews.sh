@@ -1,5 +1,6 @@
 #!/bin/bash
-# Install Homebrew formulae, apps and fonts. Shows a checklist of everything
+# Install Homebrew formulae, apps and fonts, plus the few apps that have to be
+# downloaded directly. Shows a checklist of everything
 # not yet installed so you can choose; pass --yes to install it all unprompted.
 # Safe to re-run: anything already installed is skipped, and one failing
 # package doesn't stop the rest.
@@ -48,7 +49,7 @@ casks=(
     dropbox
     claude                      # Claude desktop app (claude.ai)
     claude-code                 # Claude Code CLI
-    bettertouchtool
+    # bettertouchtool           # Homebrew installs aren't supported; see downloads below
     firefox
     google-chrome
     handbrake
@@ -83,6 +84,20 @@ casks=(
     # font-consolas             # no longer in Homebrew
     font-fira-code
 )
+
+# Apps downloaded from their developer instead of Homebrew. Each NAME needs an
+# install_NAME function (in lib.sh) and an entry in download_app_path.
+downloads=(
+    bettertouchtool
+)
+
+# download_app_path NAME
+# Prints where a direct-download app ends up once installed.
+download_app_path() {
+    case "$1" in
+        bettertouchtool) echo "/Applications/BetterTouchTool.app" ;;
+    esac
+}
 
 # existing_app CASK
 # Succeeds, printing the path, when an app this cask would install is already
@@ -131,7 +146,8 @@ add_pending() {
 
 echo "Checking what is already installed..."
 for name in "${formulae[@]}"; do
-    if grep -qx "$name" <<<"$installed_formulae"; then
+    # The second check catches aliases: "python" is listed as "python@3.x".
+    if grep -qx "$name" <<<"$installed_formulae" || brew list --formula "$name" >/dev/null 2>&1; then
         echo "  ok       $name"
     else
         add_pending "$name" "cli tool"
@@ -149,6 +165,14 @@ for name in "${casks[@]}"; do
         add_pending "$name" "font"
     else
         add_pending "$name" "app"
+    fi
+done
+
+for name in "${downloads[@]}"; do
+    if [ -e "$(download_app_path "$name")" ]; then
+        echo "  ok       $name"
+    else
+        add_pending "$name" "app (direct download)"
     fi
 done
 
@@ -176,11 +200,11 @@ for ((i = 0; i < ${#pending_names[@]}; i++)); do
         continue
     fi
     echo "Installing $name..."
-    if [ "${pending_kinds[$i]}" = "cli tool" ]; then
-        brew install "$name" || failures+=("$name")
-    else
-        brew install --cask "$name" || failures+=("$name (cask)")
-    fi
+    case "${pending_kinds[$i]}" in
+        "cli tool") brew install "$name" || failures+=("$name") ;;
+        "app (direct download)") "install_$name" || failures+=("$name (download)") ;;
+        *) brew install --cask "$name" || failures+=("$name (cask)") ;;
+    esac
 done
 
 if [ ${#failures[@]} -gt 0 ]; then

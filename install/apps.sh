@@ -24,8 +24,10 @@ else
     fi
 fi
 
-# BetterTouchTool: the licence comes from Dropbox (it must not live in this
-# public repo), and the shortcuts come from BetterTouchTool's own iCloud sync.
+# BetterTouchTool: the app itself is offered in the install/brews.sh checklist
+# (downloaded from folivora.ai), the licence comes from Dropbox (it must not
+# live in this public repo), and the shortcuts come from BetterTouchTool's own
+# iCloud sync.
 echo "Setting up BetterTouchTool"
 btt_support="$HOME/Library/Application Support/BetterTouchTool"
 if [ ! -d "/Applications/BetterTouchTool.app" ]; then

@@ -47,4 +47,4 @@ if [ ${#failed_steps[@]} -gt 0 ]; then
     exit 1
 fi
 
-echo "Done. Don't forget to run install/prefs.sh after dropbox is finished."
+echo "Done."

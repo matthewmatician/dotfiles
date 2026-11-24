@@ -48,6 +48,56 @@ load_brew() {
     command -v brew >/dev/null 2>&1
 }
 
+# copy_app APP DEST_DIR
+# Copy an app bundle into DEST_DIR. On Macs where this account can't write to
+# /Applications (a non-admin account on a managed machine), the copy is done
+# with sudo, which asks for a password just as Homebrew does for its casks, and
+# the app is then handed to this user so it can still update itself.
+copy_app() {
+    local app="$1" dest="$2" target
+    target="$dest/$(basename "$app")"
+    if [ -w "$dest" ]; then
+        ditto "$app" "$target" && return 0
+        rm -rf "$target"
+        return 1
+    fi
+    echo "  sudo     $dest is not writable by $(id -un); your password is needed to copy into it"
+    if sudo ditto "$app" "$target" && sudo chown -R "$(id -un):$(id -gn)" "$target"; then
+        return 0
+    fi
+    sudo rm -rf "$target"
+    return 1
+}
+
+# install_bettertouchtool [DEST_DIR]
+# Download BetterTouchTool from its developer and put it in DEST_DIR (default
+# /Applications). Installing it through Homebrew isn't supported, so
+# install/brews.sh offers it as a direct download instead of a cask. The
+# download is only kept if it is validly signed.
+BTT_URL="https://folivora.ai/releases/BetterTouchTool.zip"
+install_bettertouchtool() {
+    local dest="${1:-/Applications}" tmp status=0
+    tmp="$(mktemp -d)" || return 1
+    if ! curl -fL --progress-bar -o "$tmp/btt.zip" "$BTT_URL"; then
+        echo "  failed   could not download $BTT_URL"
+        status=1
+    elif ! ditto -x -k "$tmp/btt.zip" "$tmp/unpacked" || [ ! -d "$tmp/unpacked/BetterTouchTool.app" ]; then
+        echo "  failed   the download did not contain BetterTouchTool.app"
+        status=1
+    elif ! codesign --verify --deep --strict "$tmp/unpacked/BetterTouchTool.app" 2>/dev/null ||
+        ! spctl --assess --type execute "$tmp/unpacked/BetterTouchTool.app" 2>/dev/null; then
+        echo "  failed   the downloaded BetterTouchTool.app is not validly signed"
+        status=1
+    elif ! copy_app "$tmp/unpacked/BetterTouchTool.app" "$dest"; then
+        echo "  failed   could not copy BetterTouchTool.app to $dest"
+        status=1
+    else
+        echo "  installed $dest/BetterTouchTool.app"
+    fi
+    rm -rf "$tmp"
+    return $status
+}
+
 # checkbox_menu TITLE
 # Interactive checkbox list. Reads the global array menu_labels and reads and
 # updates the global array menu_checked (1 or 0 per item). Returns 0 when the

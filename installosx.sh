@@ -3,6 +3,20 @@
 # echo "Finder: show all filename extensions"
 # defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
+# write_sandboxed APP DEFAULTS-WRITE-ARGS...
+# Safari and Outlook keep their settings inside an app container, which macOS
+# only lets a terminal with Full Disk Access write to. Without it the setting
+# is skipped with a note instead of an error.
+write_sandboxed() {
+    sandboxed_app="$1"
+    shift
+    if ! defaults write "$@" 2>/dev/null; then
+        echo "  skipped  $sandboxed_app settings are protected by macOS. Give your terminal"
+        echo "           Full Disk Access (System Settings > Privacy & Security), restart"
+        echo "           it, and re-run this script"
+    fi
+}
+
 echo "show hidden files by default"
 defaults write com.apple.Finder AppleShowAllFiles -bool true
 
@@ -163,16 +177,16 @@ defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerVertSwi
 /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u 2>/dev/null || true
 
 # echo "Disable Safari’s thumbnail cache for History and Top Sites"
-# defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
+# write_sandboxed Safari com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
 
 echo "Enable Safari’s debug menu"
-defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+write_sandboxed Safari com.apple.Safari IncludeInternalDebugMenu -bool true
 
 # echo "Make Safari’s search banners default to Contains instead of Starts With"
-# defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
+# write_sandboxed Safari com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
 
 echo "Remove useless icons from Safari’s bookmarks bar"
-defaults write com.apple.Safari ProxiesInBookmarksBar "()"
+write_sandboxed Safari com.apple.Safari ProxiesInBookmarksBar "()"
 
 echo "Add a context menu item for showing the Web Inspector in web views"
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
@@ -193,8 +207,7 @@ defaults write -g NSUserKeyEquivalents -dict-add "Select Previous Tab" -string "
 defaults write com.apple.iChat NSUserKeyEquivalents -dict-add "Go to Next Conversation" "@\$J"
 defaults write com.apple.iChat NSUserKeyEquivalents -dict-add "Go to Previous Conversation" "@\$K"
 
-defaults write com.microsoft.Outlook NSUserKeyEquivalents -dict-add "Find..." "@\$f"
-defaults write com.microsoft.Outlook NSUserKeyEquivalents -dict-add "Outlook Items Search" "@f"
+write_sandboxed Outlook com.microsoft.Outlook NSUserKeyEquivalents -dict-add "Find..." "@\$f" "Outlook Items Search" "@f"
 
 # Disable send and reply animations in Mail.app
 # defaults write com.apple.Mail DisableReplyAnimations -bool true
