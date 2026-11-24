@@ -5,3 +5,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+
+# iTerm-managed symlinks into the app bundle
+.config/iterm2/cc-status
+.config/iterm2/it2

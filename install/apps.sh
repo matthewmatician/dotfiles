@@ -24,4 +24,36 @@ else
     fi
 fi
 
+# BetterTouchTool: the licence comes from Dropbox (it must not live in this
+# public repo), and the shortcuts come from BetterTouchTool's own iCloud sync.
+echo "Setting up BetterTouchTool"
+btt_support="$HOME/Library/Application Support/BetterTouchTool"
+if [ ! -d "/Applications/BetterTouchTool.app" ]; then
+    echo "  skip     BetterTouchTool is not installed"
+elif [ -e "$btt_support/bettertouchtool.bttlicense" ]; then
+    echo "  ok       BetterTouchTool is already registered"
+else
+    btt_license=""
+    for candidate in "$HOME/Dropbox/"*.bettertouchtool; do
+        if [ -e "$candidate" ]; then
+            btt_license="$candidate"
+            break
+        fi
+    done
+    if [ -z "$btt_license" ]; then
+        echo "  note     no *.bettertouchtool licence in ~/Dropbox yet; once Dropbox"
+        echo "           has synced, re-run this script or double-click the licence"
+    elif open -a BetterTouchTool "$btt_license"; then
+        echo "  opened   $btt_license in BetterTouchTool to register it"
+    else
+        echo "  failed   could not open $btt_license in BetterTouchTool"
+        failed=1
+    fi
+fi
+if [ -d "/Applications/BetterTouchTool.app" ] &&
+    [ "$(defaults read com.hegenberg.BetterTouchTool BTTDropboxSyncActive 2>/dev/null)" != "1" ]; then
+    echo "  note     to bring your shortcuts over, turn on sync in BetterTouchTool's"
+    echo "           settings and choose iCloud (needs iCloud Drive on the same Apple ID)"
+fi
+
 exit $failed

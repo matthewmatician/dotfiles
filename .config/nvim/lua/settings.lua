@@ -27,6 +27,8 @@ vim.o.wildmode = "longest:full,full"
 
 -- Display
 vim.opt.wrap = false
+vim.opt.linebreak = true -- When wrapping, don't break words
+vim.o.breakindent = true -- Keep the indentation when wrapping happens
 vim.opt.termguicolors = true
 vim.opt.scrolloff = 2
 vim.opt.list = true
@@ -37,7 +39,6 @@ vim.opt.splitbelow = true
 vim.opt.shortmess = vim.opt.shortmess + "a" -- Don't give |ins-completion-menu| messages.
 vim.opt.signcolumn = "yes"
 vim.o.number = true -- Make line numbers default
-vim.o.breakindent = true -- Keep the indentation when wrapping happens
 vim.opt.winwidth = 40
 vim.opt.winminwidth = 8
 vim.opt.winheight = 8
@@ -85,6 +86,13 @@ vim.opt.undofile = true
 
 -- File Types
 vim.filetype.add({ extension = { mdx = "mdx" } })
+
+vim.api.nvim_create_autocmd("BufRead", {
+	pattern = { "*.md", "*.mdx" },
+	callback = function()
+		vim.opt_local.wrap = true
+	end,
+})
 
 -- Sometimes I fat-finger the shift key and type `:Q` instead of `:q`
 vim.api.nvim_create_user_command("Q", ":q", {})

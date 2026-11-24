@@ -48,7 +48,7 @@ casks=(
     dropbox
     claude                      # Claude desktop app (claude.ai)
     claude-code                 # Claude Code CLI
-    # bettertouchtool
+    bettertouchtool
     firefox
     google-chrome
     handbrake
@@ -59,6 +59,7 @@ casks=(
     spotify
     steam
     visual-studio-code
+    jordanbaird-ice             # Ice, menu bar manager
     # dozer                     # no longer in Homebrew
     # microsoft-teams
     figma

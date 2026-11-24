@@ -4,7 +4,7 @@ return {
 		priority = 1000,
 		config = function()
 			require("onedark").setup({
-				style = "warmer",
+				style = "darker",
 				code_style = {
 					strings = "italic",
 				},
@@ -35,7 +35,7 @@ return {
 					cyan = "#8AA499",
 					dark_cyan = "#4b5d53",
 
-					red = "#E75741",
+					red = "#c9503a",
 					dark_red = "#833b3b",
 
 					diff_add = "#262f24",
@@ -80,9 +80,6 @@ return {
 					NeoTreeNormal = { fg = "$fg", bg = "$bg0" },
 					NeoTreeDirectoryName = { fg = "$light_grey" },
 					NeoTreeDirectoryIcon = { fg = "$orange" },
-					-- NeoTreeNormalNC = { fg = c.fg, bg = cfg.transparent and c.none or c.bg_d },
-					-- NeoTreeVertSplit = { fg = c.bg1, bg = cfg.transparent and c.none or c.bg1 },
-					-- NeoTreeWinSeparator = { fg = c.bg1, bg = cfg.transparent and c.none or c.bg1 },
 					NeoTreeEndOfBuffer = { fg = "$bg3", bg = "$bg0" },
 					NeoTreeRootName = { fg = "$purple", fmt = "bold" },
 					NeoTreeGitAdded = { fg = "$green" },
@@ -90,8 +87,6 @@ return {
 					NeoTreeGitModified = { fg = "$yellow" },
 					NeoTreeGitConflict = { fg = "$red", fmt = "bold,italic" },
 					NeoTreeGitUntracked = { fg = "$red", fmt = "italic" },
-					-- NeoTreeIndentMarker = colors.Grey,
-					-- NeoTreeSymbolicLinkTarget = colors.Purple,
 				},
 			})
 			vim.cmd.colorscheme("onedark")
@@ -99,14 +94,23 @@ return {
 	},
 
 	{ -- show hex colors
-		"NvChad/nvim-colorizer.lua",
+		"catgoose/nvim-colorizer.lua",
 		config = function()
 			require("colorizer").setup({
-				user_default_options = {
-					names = false,
-					rgb_fn = true,
-					hsl_fn = true,
-					mode = "virtualtext",
+				options = {
+					parsers = {
+						css = true,
+						css_fn = true,
+						names = { enable = true },
+						hex = { default = true, rgb = true, rgba = true, rrggbb = true, rrggbbaa = true },
+						rgb = { enable = true },
+						xterm = { enable = true },
+					},
+					display = {
+						mode = "virtualtext",
+						-- virtualtext = { char = "■" },
+						virtualtext = { char = "●" },
+					},
 				},
 			})
 		end,

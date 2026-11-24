@@ -15,6 +15,12 @@ return {
 
 		-- Additional lua configuration, makes nvim stuff amazing!
 		{ "folke/neodev.nvim", opts = {} },
+
+		{
+			"vhyrro/luarocks.nvim",
+			priority = 1000, -- Very high priority is required, luarocks.nvim should run as the first plugin in your config.
+			config = true,
+		},
 	},
 	config = function()
 		-- Brief aside: **What is LSP?**
@@ -180,6 +186,10 @@ return {
 					},
 				},
 			},
+
+			eslint = {
+				root_dir = require("lspconfig").util.root_pattern(".git"),
+			},
 		}
 
 		-- Ensure the servers and tools above are installed
@@ -195,6 +205,7 @@ return {
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
 			"stylua", -- Used to format Lua code
+			"markdownlint-cli2", -- Linter for markdown / mdx files (used by nvim-lint)
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

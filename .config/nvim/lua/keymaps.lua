@@ -41,11 +41,11 @@ vim.keymap.set("x", "<leader>p", '"_d"+P', { desc = "Paste from clipboard" })
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", function()
-	vim.diagnostic.goto_prev({ severity = { min = vim.diagnostic.severity.WARN } })
+	vim.diagnostic.jump({ count = -1, severity = { min = vim.diagnostic.severity.WARN } })
 end, { desc = "Go to previous diagnostic message" })
 
 vim.keymap.set("n", "]d", function()
-	vim.diagnostic.goto_next({ severity = { min = vim.diagnostic.severity.WARN } })
+	vim.diagnostic.jump({ count = 1, severity = { min = vim.diagnostic.severity.WARN } })
 end, { desc = "Go to previous diagnostic message" })
 
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
@@ -66,28 +66,6 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 
 -- Close a buffer, but keep the window
 -- TODO: Make this a plugin someday
-
--- Get the list of buffers (minus buffers that aren't valid or listed)
-local getBufferList = function()
-	return vim.tbl_filter(function(buf)
-		return vim.api.nvim_buf_is_valid(buf) and vim.api.nvim_buf_get_option(buf, "buflisted")
-	end, vim.api.nvim_list_bufs())
-end
-
-local killDumBuffers = function()
-	for _, buf in ipairs(getBufferList()) do
-		if
-			vim.fn.bufwinnr(buf) == -1
-			and (
-				string.len(vim.fn.getbufvar(buf, "&filetype")) == 0
-				or vim.fn.stridx(vim.fn.bufname(buf), "/^fugitive:/") == 0
-			)
-		then
-			vim.api.nvim_buf_delete(buf, { force = true })
-		end
-	end
-end
-
 local closeBufferKeepWindow = function()
 	local buffToDelete = vim.api.nvim_win_get_buf(0)
 	local newBuffer = vim.fn.bufnr("#")
@@ -105,25 +83,21 @@ local closeBufferKeepWindow = function()
 	else
 		print(buffToDelete .. " does not exist.")
 	end
-
-	killDumBuffers()
 end
 
--- vim.api.nvim_create_user_command('KillDumBuffers', killDumBuffers, {})
--- vim.api.nvim_create_user_command('KeepSplitClose', keepSplitClose, {})
 vim.keymap.set("n", "<leader>w", closeBufferKeepWindow, { desc = "Close buffer, keep window." })
 
 --autocmd WinClosed * :call KillDumBuffers()
-local killDum_group = vim.api.nvim_create_augroup("KillDumBuffers", { clear = true })
-vim.api.nvim_create_autocmd("WinClosed", {
-	callback = killDumBuffers,
-	group = killDum_group,
-	pattern = "*",
-})
+-- local killDum_group = vim.api.nvim_create_augroup("KillDumBuffers", { clear = true })
+-- vim.api.nvim_create_autocmd("WinClosed", {
+-- 	callback = killDumBuffers,
+-- 	group = killDum_group,
+-- 	pattern = "*",
+-- })
 
 -- use eslint to format javascript
 vim.api.nvim_create_autocmd("BufWritePre", {
-	command = "silent! EslintFixAll",
+	command = "silent! LspEslintFixAll",
 	group = vim.api.nvim_create_augroup("JavascriptFormattings", {}),
 	pattern = { "*.tsx", "*.ts", "*.jsx", "*.js" },
 })
