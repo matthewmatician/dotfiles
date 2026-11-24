@@ -106,7 +106,7 @@ local icons = {
 		name = "Configuration",
 	},
 	cjs = {
-		icon = "",
+		icon = "",
 		color = c.yellow,
 		name = "Cjs",
 	},
@@ -206,7 +206,7 @@ local icons = {
 		name = "CSharpProject",
 	},
 	css = {
-		icon = "",
+		icon = "",
 		color = c.blue,
 		name = "Css",
 	},
@@ -224,26 +224,6 @@ local icons = {
 		icon = "",
 		color = c.blue,
 		name = "Cxx",
-	},
-	["cy.js"] = {
-		icon = "",
-		color = c.blue,
-		name = "SpecJs",
-	},
-	["cy.jsx"] = {
-		icon = "",
-		color = c.blue,
-		name = "JavaScriptReactSpec",
-	},
-	["cy.ts"] = {
-		icon = "",
-		color = c.blue,
-		name = "SpecTs",
-	},
-	["cy.tsx"] = {
-		icon = "",
-		color = c.blue,
-		name = "TypeScriptReactSpec",
 	},
 	d = {
 		icon = "",
@@ -541,8 +521,8 @@ local icons = {
 		name = "Jpg",
 	},
 	js = {
-		icon = "",
-		color = c.yellow,
+		icon = "",
+		color = c.red,
 		name = "Js",
 	},
 	json = {
@@ -561,8 +541,8 @@ local icons = {
 		name = "Jsonc",
 	},
 	jsx = {
-		icon = "",
-		color = c.blue,
+		icon = "",
+		color = c.yellow,
 		name = "Jsx",
 	},
 	jxl = {
@@ -622,12 +602,12 @@ local icons = {
 	},
 	lua = {
 		icon = "",
-		color = c.blue,
+		color = c.red,
 		name = "Lua",
 	},
 	luau = {
 		icon = "",
-		color = c.blue,
+		color = c.red,
 		name = "Luau",
 	},
 	m4a = {
@@ -671,7 +651,7 @@ local icons = {
 		name = "Mint",
 	},
 	mjs = {
-		icon = "",
+		icon = "",
 		color = c.yellow,
 		name = "Mjs",
 	},
@@ -992,22 +972,22 @@ local icons = {
 	},
 	["spec.js"] = {
 		icon = "",
-		color = c.blue,
+		color = c.purple,
 		name = "SpecJs",
 	},
 	["spec.jsx"] = {
 		icon = "",
-		color = c.blue,
+		color = c.purple,
 		name = "JavaScriptReactSpec",
 	},
 	["spec.ts"] = {
 		icon = "",
-		color = c.blue,
+		color = c.purple,
 		name = "SpecTs",
 	},
 	["spec.tsx"] = {
 		icon = "",
-		color = c.blue,
+		color = c.purple,
 		name = "TypeScriptReactSpec",
 	},
 	sql = {
@@ -1087,22 +1067,22 @@ local icons = {
 	},
 	["test.js"] = {
 		icon = "",
-		color = c.blue,
+		color = c.purple,
 		name = "TestJs",
 	},
 	["test.jsx"] = {
 		icon = "",
-		color = c.blue,
+		color = c.purple,
 		name = "JavaScriptReactTest",
 	},
 	["test.ts"] = {
 		icon = "",
-		color = c.blue,
+		color = c.purple,
 		name = "TestTs",
 	},
 	["test.tsx"] = {
 		icon = "",
-		color = c.blue,
+		color = c.purple,
 		name = "TypeScriptReactTest",
 	},
 	tex = {
@@ -1141,8 +1121,8 @@ local icons = {
 		name = "TextScene",
 	},
 	tsx = {
-		icon = "",
-		color = c.yellow,
+		icon = "",
+		color = c.blue,
 		name = "Tsx",
 	},
 	ttf = {
@@ -1272,7 +1252,7 @@ local icons = {
 	},
 	yml = {
 		icon = "",
-		color = c.grey,
+		color = c.red,
 		name = "Yml",
 	},
 	zig = {
@@ -1296,10 +1276,6 @@ return {
 	"nvim-tree/nvim-web-devicons",
 	config = function()
 		require("nvim-web-devicons").setup({
-			-- globally enable default icons (default to false)
-			-- will get overriden by `get_icons` option
-			default = true,
-
 			-- your personnal icons can go here (to override)
 			-- you can specify color or cterm_color instead of specifying both of them
 			-- DevIcon will be appended to `name`
@@ -1311,7 +1287,7 @@ return {
 
 			-- globally enable default icons (default to false)
 			-- will get overriden by `get_icons` option
-			--  default = true;
+			-- default = true;
 
 			-- globally enable "strict" selection of icons - icon will be looked up in
 			-- different tables, first by filename, and if not found by extension; this
@@ -1337,9 +1313,45 @@ return {
 					color = "#81e043",
 					name = "Log",
 				},
-
-				[".lua"] = {
-					color = "#888888",
+				["js"] = {
+					icon = "",
+					color = c.yellow,
+					name = "Js",
+				},
+				["jsx"] = {
+					icon = "",
+					color = c.yellow,
+					name = "JavascriptReact",
+				},
+				["ts"] = {
+					icon = "󰛦",
+					color = c.blue,
+					name = "Ts",
+				},
+				["tsx"] = {
+					icon = "󰛦",
+					color = c.blue,
+					name = "TypescriptReact",
+				},
+				["cy.js"] = {
+					icon = "",
+					color = c.purple,
+					name = "SpecJs",
+				},
+				["cy.jsx"] = {
+					icon = "",
+					color = c.purple,
+					name = "JavaScriptReactSpec",
+				},
+				["cy.ts"] = {
+					icon = "",
+					color = c.purple,
+					name = "SpecTs",
+				},
+				["cy.tsx"] = {
+					icon = "",
+					color = c.purple,
+					name = "TypeScriptReactSpec",
 				},
 			},
 		})

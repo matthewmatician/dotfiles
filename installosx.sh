@@ -4,7 +4,7 @@
 # defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 echo "show hidden files by default"
-defaults write com.apple.Finder AppleShowAllFiles -bool false
+defaults write com.apple.Finder AppleShowAllFiles -bool true
 
 echo "only use UTF-8 in Terminal.app"
 defaults write com.apple.terminal StringEncodings -array 4
@@ -219,8 +219,12 @@ defaults write -g ApplePersistence -bool no
 # Commented out, as this is known to cause problems when saving files in Adobe Illustrator CS5 :(
 #echo "0x08000100:0" > ~/.CFUserTextEncoding
 
+echo "Make double-clicking window title-bars maximise the window"
+defaults write -g AppleActionOnDoubleClick -string "Maximize"
+
+echo "Disable AirPlay receiver"
+defaults write com.apple.airplay disableAirPlayReceiver -bool true
+
 echo "Kill affected applications"
 for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" >/dev/null 2>&1; done
 
-echo "Make double-clicking window title-bars maximise the window"
-defaults write -g AppleActionOnDoubleClick -string "Maximize"
